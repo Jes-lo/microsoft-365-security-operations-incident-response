@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "feature": 6,
+  "name": "Endpoint Security Incident Investigation",
+  "phase": "FOUNDATION_READY_FOR_LIVE_VALIDATION",
+  "live_validation_state": "NOT_RUN",
+  "investigation_surfaces": [
+    {
+      "id": "defender-security-alerts-v2",
+      "source": "Microsoft Graph unified security API",
+      "resource": "/security/alerts_v2",
+      "method": "GET",
+      "delegated_permission": "SecurityAlert.Read.All",
+      "feature_2_classification": "AVAILABLE",
+      "purpose": "Investigate endpoint-associated security alerts and privacy-preserving evidence relationships."
+    },
+    {
+      "id": "defender-security-incidents",
+      "source": "Microsoft Graph unified security API",
+      "resource": "/security/incidents",
+      "method": "GET",
+      "delegated_permission": "SecurityIncident.Read.All",
+      "feature_2_classification": "AVAILABLE",
+      "purpose": "Correlate security incidents with alerts without retaining raw incident or tenant identifiers."
+    }
+  ],
+  "live_query_boundary": {
+    "default_lookback_hours": 24,
+    "maximum_lookback_hours": 168,
+    "maximum_records_per_surface": 25,
+    "tenant_write_allowed": false,
+    "endpoint_write_allowed": false,
+    "destructive_endpoint_action_allowed": false,
+    "new_permission_grant_allowed": false,
+    "automatic_role_assignment_allowed": false,
+    "trial_activation_allowed": false
+  },
+  "product_boundary": {
+    "unified_security_alert_and_incident_investigation": true,
+    "direct_endpoint_inventory_query_in_scope": false,
+    "direct_endpoint_response_action_in_scope": false,
+    "device_isolation_in_scope": false,
+    "device_offboarding_in_scope": false,
+    "file_quarantine_or_submission_in_scope": false,
+    "remediation_execution_in_scope": false
+  },
+  "privacy_boundary": {
+    "raw_alert_ids_retained": false,
+    "raw_incident_ids_retained": false,
+    "raw_device_ids_retained": false,
+    "raw_device_names_retained": false,
+    "raw_user_ids_retained": false,
+    "raw_user_principal_names_retained": false,
+    "raw_ip_addresses_retained": false,
+    "raw_mac_addresses_retained": false,
+    "raw_file_names_retained": false,
+    "raw_file_paths_retained": false,
+    "raw_file_hashes_retained": false,
+    "raw_urls_retained": false,
+    "raw_titles_or_descriptions_retained": false,
+    "raw_graph_payloads_retained": false,
+    "incident_alias_format": "INCIDENT-NNN",
+    "alert_alias_format": "ALERT-NNN",
+    "device_alias_format": "DEVICE-NNN",
+    "subject_alias_format": "SUBJECT-NNN"
+  },
+  "correlation_model": {
+    "incident_aliasing": "IN_MEMORY_ONLY",
+    "alert_aliasing": "IN_MEMORY_ONLY",
+    "device_aliasing": "IN_MEMORY_ONLY",
+    "subject_aliasing": "IN_MEMORY_ONLY",
+    "incident_alert_correlation": true,
+    "endpoint_evidence_classification": true,
+    "evidence_verdict_classification": true,
+    "remediation_status_observation": true,
+    "tenant_remediation_execution": false
+  },
+  "evidence_integration": {
+    "feature_3_sanitized_evidence_registration_required": true,
+    "sha256_fingerprint_required": true,
+    "custody_chain_required": true,
+    "raw_source_copy_allowed": false
+  }
+}
