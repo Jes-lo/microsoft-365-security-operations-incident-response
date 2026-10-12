@@ -28,6 +28,9 @@ jobs:
         run: |
           bash -n scripts/validate-repository.sh
           bash -n tests/test-repository-validation.sh
+          bash -n scripts/validate-security-signal-capabilities.sh
+          bash -n tests/test-security-signal-capabilities.sh
+          pwsh -NoLogo -NoProfile -Command '$null = [scriptblock]::Create((Get-Content -Raw "automation/powershell/Invoke-SecuritySignalCapabilityDiscovery.ps1"))'
 
       - name: Run repository security validation
         shell: bash
@@ -35,4 +38,6 @@ jobs:
 
       - name: Run adversarial validation tests
         shell: bash
-        run: ./tests/test-repository-validation.sh
+        run: |
+          ./tests/test-repository-validation.sh
+          ./tests/test-security-signal-capabilities.sh

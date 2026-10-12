@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 1 — Security Operations Project Foundation — complete. Next: Feature 2 — Security Signal & Capability Discovery.
+Feature 2 — Security Signal & Capability Discovery — static capability and least-privilege discovery foundation implemented; live tenant capability validation pending.
 
 The repository is initially private while implementation and validation are in progress.
 
