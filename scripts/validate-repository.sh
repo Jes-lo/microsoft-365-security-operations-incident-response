@@ -26,6 +26,15 @@ required_files=(
   "docs/security/PRIVACY-AND-EVIDENCE-HANDLING.md"
   "docs/testing/VALIDATION-STRATEGY.md"
   ".github/workflows/repository-security.yml"
+  "automation/graph/.gitkeep"
+  "automation/powershell/.gitkeep"
+  "detections/apps/.gitkeep"
+  "detections/endpoint/.gitkeep"
+  "detections/identity/.gitkeep"
+  "docs/evidence/.gitkeep"
+  "docs/incidents/.gitkeep"
+  "docs/postmortems/.gitkeep"
+  "docs/runbooks/.gitkeep"
 )
 
 required_dirs=(
