@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 2 — Security Signal & Capability Discovery — static capability foundation complete and live AuditLog discovery validated through a dedicated least-privilege Microsoft Graph application; Microsoft Defender and Identity Protection signal discovery remain behind separate read-only authorization gates.
+Feature 2 — Security Signal & Capability Discovery — complete. All six modeled investigation surfaces have sanitized live capability classifications through a dedicated least-privilege Microsoft Graph application: five are AVAILABLE and the Microsoft Entra risky-user surface is explicitly ACCESS_OR_LICENSE_DENIED without privilege escalation. Next: Feature 3 — Incident Case & Evidence Foundation.
 
 The repository is initially private while implementation and validation are in progress.
 

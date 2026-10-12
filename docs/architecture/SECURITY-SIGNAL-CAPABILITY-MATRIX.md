@@ -93,3 +93,30 @@ Directory audit and sign-in investigation surfaces both returned successful HTTP
 The dedicated application is intentionally extensible only through later explicit read-only authorization gates.
 
 Microsoft Defender alerts, Microsoft Defender incidents, risky users, and risk detections remain outside the Feature 2C authorization boundary.
+
+## Feature 2 completion — Remaining security signals
+
+The dedicated project Graph application provides one isolated authentication boundary for all six modeled Feature 2 investigation surfaces.
+
+The functional delegated read-permission set is:
+
+- `AuditLog.Read.All`
+- `SecurityAlert.Read.All`
+- `SecurityIncident.Read.All`
+- `IdentityRiskyUser.Read.All`
+- `IdentityRiskEvent.Read.All`
+
+No Graph write permission belongs to capability discovery.
+
+Final sanitized live classifications:
+
+- Microsoft Entra directory audit — `AVAILABLE`
+- Microsoft Entra sign-ins — `AVAILABLE`
+- Microsoft Defender alerts — `AVAILABLE`
+- Microsoft Defender incidents — `AVAILABLE`
+- Microsoft Entra risk detections — `AVAILABLE`
+- Microsoft Entra risky users — `ACCESS_OR_LICENSE_DENIED`
+
+Live capability state is distinct from configured permissions so that licensing, role restrictions, product availability, and empty datasets are not misrepresented.
+
+Feature 2 is complete when every modeled capability has a sanitized live classification; universal availability is not required.

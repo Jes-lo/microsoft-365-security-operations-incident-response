@@ -27,6 +27,8 @@ required_files=(
   "docs/decisions/ADR-002-staged-least-privilege-signal-discovery.md"
   "docs/architecture/SECURITY-SIGNAL-CAPABILITY-MATRIX.md"
   "configs/security-signal-capabilities.json"
+  "docs/evidence/FEATURE-2D-2E-REMAINING-SECURITY-SIGNAL-DISCOVERY.md"
+  "docs/decisions/ADR-004-complete-readonly-security-signal-discovery.md"
   "docs/evidence/FEATURE-2C-AUDITLOG-READ-ONLY-DISCOVERY.md"
   "docs/decisions/ADR-003-dedicated-readonly-graph-application.md"
   "docs/architecture/SECURITY-OPERATIONS-ARCHITECTURE.md"
