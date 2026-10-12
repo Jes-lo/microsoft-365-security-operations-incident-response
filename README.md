@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 4 — Identity Security Incident Investigation — foundation ready for live validation. Identity sign-ins, directory audit, and risk detections can now be correlated locally through privacy-preserving SUBJECT aliases, converted into sanitized investigation summaries, and registered through the Feature 3 SHA-256/custody workflow without retaining raw tenant identifiers or Graph payloads. Live read-only validation remains pending.
+Feature 4 — Identity Security Incident Investigation — complete. Privacy-preserving identity correlation is implemented and live read-only validation confirmed access to sign-ins, directory audit, and risk detections through the dedicated least-privilege Graph application. Raw tenant identifiers, Graph payloads, and live activity counts are not retained in Git. The previously established risky-users access/license boundary remains preserved. Next: Feature 5 — Enterprise Application & OAuth Incident Investigation.
 
 The repository is initially private while implementation and validation are in progress.
 
