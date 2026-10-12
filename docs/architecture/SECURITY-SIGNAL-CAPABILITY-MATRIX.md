@@ -76,3 +76,20 @@ Feature 2 does not:
 - perform endpoint response actions.
 
 Those operations require later explicit response safety gates.
+
+## Feature 2C — Dedicated read-only Graph application
+
+Live Microsoft Graph discovery uses a dedicated project application rather than relying on the shared Microsoft Graph PowerShell consent context.
+
+For the AuditLog stage, the validated authorization boundary was delegated `AuditLog.Read.All` with:
+
+- zero write-capable scopes;
+- zero unexpected scopes;
+- two GET requests;
+- zero investigation-time tenant writes.
+
+Directory audit and sign-in investigation surfaces both returned successful HTTP responses and are classified as `AVAILABLE`.
+
+The dedicated application is intentionally extensible only through later explicit read-only authorization gates.
+
+Microsoft Defender alerts, Microsoft Defender incidents, risky users, and risk detections remain outside the Feature 2C authorization boundary.

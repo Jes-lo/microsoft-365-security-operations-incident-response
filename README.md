@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 2 — Security Signal & Capability Discovery — static capability and least-privilege discovery foundation implemented; live tenant capability validation pending.
+Feature 2 — Security Signal & Capability Discovery — static capability foundation complete and live AuditLog discovery validated through a dedicated least-privilege Microsoft Graph application; Microsoft Defender and Identity Protection signal discovery remain behind separate read-only authorization gates.
 
 The repository is initially private while implementation and validation are in progress.
 
