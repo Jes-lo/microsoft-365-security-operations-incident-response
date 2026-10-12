@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "feature": 3,
+  "name": "incident-case-evidence-foundation",
+  "case_id_pattern": "^IR-[0-9]{8}-[A-Z0-9]{4,12}$",
+  "evidence_id_pattern": "^EVID-[A-Z0-9]{4,16}$",
+  "severity_values": [
+    "SEV0",
+    "SEV1",
+    "SEV2",
+    "SEV3",
+    "SEV4"
+  ],
+  "status_values": [
+    "OPEN",
+    "TRIAGE",
+    "INVESTIGATING",
+    "CONTAINED",
+    "ERADICATED",
+    "RECOVERING",
+    "CLOSED"
+  ],
+  "source_type_values": [
+    "MICROSOFT_GRAPH",
+    "PORTAL_EXPORT",
+    "OPERATOR_NOTE",
+    "LOCAL_FILE",
+    "OTHER_SANITIZED"
+  ],
+  "storage_boundary": {
+    "generated_case_workspaces_are_local_only": true,
+    "raw_tenant_payloads_committed_to_git": false,
+    "application_identifiers_committed_to_git": false,
+    "tenant_identifiers_committed_to_git": false,
+    "user_identifiers_committed_to_git": false,
+    "access_tokens_committed_to_git": false,
+    "recommended_repository_local_path": ".local/incident-cases/"
+  },
+  "evidence_boundary": {
+    "raw_content_copied_by_default": false,
+    "source_path_persisted": false,
+    "source_filename_persisted": false,
+    "sha256_persisted": true,
+    "size_bytes_persisted": true,
+    "sanitized_label_required": true
+  },
+  "custody": {
+    "format": "NDJSON",
+    "hash_algorithm": "SHA256",
+    "append_only_event_semantics": true,
+    "previous_record_hash_chaining": true,
+    "sequence_starts_at": 1,
+    "raw_evidence_embedded": false
+  },
+  "required_case_fields": [
+    "schema_version",
+    "case_id",
+    "title_sanitized",
+    "severity",
+    "status",
+    "opened_at_utc",
+    "evidence_count",
+    "custody_event_count",
+    "raw_tenant_data_retained"
+  ],
+  "required_evidence_fields": [
+    "evidence_id",
+    "registered_at_utc",
+    "source_type",
+    "sanitized_label",
+    "sha256",
+    "size_bytes",
+    "raw_content_retained"
+  ],
+  "repository_prohibited_content": [
+    "raw Microsoft Graph responses",
+    "raw alert payloads",
+    "raw incident payloads",
+    "raw risky-user payloads",
+    "raw risk-detection payloads",
+    "tenant identifiers",
+    "application identifiers",
+    "user principal names",
+    "access tokens",
+    "refresh tokens"
+  ]
+}
