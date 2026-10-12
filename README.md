@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 2 — Security Signal & Capability Discovery — complete. All six modeled investigation surfaces have sanitized live capability classifications through a dedicated least-privilege Microsoft Graph application: five are AVAILABLE and the Microsoft Entra risky-user surface is explicitly ACCESS_OR_LICENSE_DENIED without privilege escalation. Next: Feature 3 — Incident Case & Evidence Foundation.
+Feature 3 — Incident Case & Evidence Foundation — complete. A local-only incident workspace model now provides sanitized case metadata, SHA-256 evidence fingerprints, duplicate-evidence rejection, and a tamper-evident hash-chained custody log without committing raw tenant evidence, identifiers, tokens, source paths, or source filenames. Next: Feature 4 — Identity Security Incident Investigation.
 
 The repository is initially private while implementation and validation are in progress.
 

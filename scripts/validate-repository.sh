@@ -27,6 +27,14 @@ required_files=(
   "docs/decisions/ADR-002-staged-least-privilege-signal-discovery.md"
   "docs/architecture/SECURITY-SIGNAL-CAPABILITY-MATRIX.md"
   "configs/security-signal-capabilities.json"
+  "tests/test-incident-case-foundation.sh"
+  "scripts/validate-incident-case-foundation.sh"
+  "docs/decisions/ADR-005-local-first-incident-case-evidence.md"
+  "docs/architecture/INCIDENT-CASE-EVIDENCE-MODEL.md"
+  "automation/powershell/Test-IncidentCaseIntegrity.ps1"
+  "automation/powershell/Add-IncidentEvidenceRecord.ps1"
+  "automation/powershell/New-IncidentCase.ps1"
+  "configs/incident-case-contract.json"
   "docs/evidence/FEATURE-2D-2E-REMAINING-SECURITY-SIGNAL-DISCOVERY.md"
   "docs/decisions/ADR-004-complete-readonly-security-signal-discovery.md"
   "docs/evidence/FEATURE-2C-AUDITLOG-READ-ONLY-DISCOVERY.md"
@@ -203,5 +211,8 @@ LARGE_FILE_COUNT="$(
 pass "file-size guardrail valid"
 
 "$ROOT/scripts/validate-security-signal-capabilities.sh" "$ROOT/configs/security-signal-capabilities.json" >/dev/null
+
+./scripts/validate-incident-case-foundation.sh
+./tests/test-incident-case-foundation.sh
 
 printf 'REPOSITORY_VALIDATION=PASS\n'
