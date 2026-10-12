@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 3 — Incident Case & Evidence Foundation — complete. A local-only incident workspace model now provides sanitized case metadata, SHA-256 evidence fingerprints, duplicate-evidence rejection, and a tamper-evident hash-chained custody log without committing raw tenant evidence, identifiers, tokens, source paths, or source filenames. Next: Feature 4 — Identity Security Incident Investigation.
+Feature 4 — Identity Security Incident Investigation — foundation ready for live validation. Identity sign-ins, directory audit, and risk detections can now be correlated locally through privacy-preserving SUBJECT aliases, converted into sanitized investigation summaries, and registered through the Feature 3 SHA-256/custody workflow without retaining raw tenant identifiers or Graph payloads. Live read-only validation remains pending.
 
 The repository is initially private while implementation and validation are in progress.
 
