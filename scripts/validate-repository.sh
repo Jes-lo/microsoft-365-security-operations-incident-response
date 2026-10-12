@@ -33,6 +33,12 @@ required_files=(
   "docs/architecture/IDENTITY-SECURITY-INCIDENT-INVESTIGATION.md"
   "automation/powershell/Convert-IdentitySecuritySignals.ps1"
   "configs/identity-incident-investigation-contract.json"
+  "configs/enterprise-app-oauth-investigation-contract.json"
+  "automation/powershell/Convert-EnterpriseAppOAuthSignals.ps1"
+  "docs/architecture/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION.md"
+  "docs/decisions/ADR-007-privacy-preserving-enterprise-app-oauth-investigation.md"
+  "scripts/validate-enterprise-app-oauth-investigation.sh"
+  "tests/test-enterprise-app-oauth-investigation.sh"
   "docs/evidence/IDENTITY-SECURITY-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "tests/test-incident-case-foundation.sh"
   "scripts/validate-incident-case-foundation.sh"
@@ -224,5 +230,8 @@ pass "file-size guardrail valid"
 
 ./scripts/validate-identity-incident-investigation.sh
 ./tests/test-identity-incident-investigation.sh
+
+./scripts/validate-enterprise-app-oauth-investigation.sh
+./tests/test-enterprise-app-oauth-investigation.sh
 
 printf 'REPOSITORY_VALIDATION=PASS\n'

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "feature": 5,
+  "name": "Enterprise Application & OAuth Incident Investigation",
+  "phase": "FOUNDATION_READY_FOR_LIVE_VALIDATION",
+  "live_validation_state": "NOT_RUN",
+  "investigation_surfaces": [
+    {
+      "id": "entra-application-sign-ins",
+      "source": "Microsoft Graph",
+      "resource": "/auditLogs/signIns",
+      "method": "GET",
+      "delegated_permission": "AuditLog.Read.All",
+      "feature_2_classification": "AVAILABLE",
+      "purpose": "Correlate application sign-in activity without retaining raw application or user identifiers."
+    },
+    {
+      "id": "entra-application-management-audit",
+      "source": "Microsoft Graph",
+      "resource": "/auditLogs/directoryAudits",
+      "method": "GET",
+      "delegated_permission": "AuditLog.Read.All",
+      "feature_2_classification": "AVAILABLE",
+      "purpose": "Investigate application-management and OAuth-consent activity without retaining raw tenant identifiers or grant payloads."
+    }
+  ],
+  "live_query_boundary": {
+    "default_lookback_hours": 24,
+    "maximum_lookback_hours": 168,
+    "maximum_records_per_surface": 25,
+    "tenant_write_allowed": false,
+    "new_permission_grant_allowed": false,
+    "automatic_role_assignment_allowed": false,
+    "trial_activation_allowed": false
+  },
+  "permission_boundary": {
+    "foundation_requires_new_permissions": false,
+    "foundation_required_existing_permissions": [
+      "AuditLog.Read.All"
+    ],
+    "current_permission_grant_inventory_query_in_scope": false,
+    "additional_directory_or_application_permissions_automatically_authorized": false
+  },
+  "privacy_boundary": {
+    "raw_application_client_ids_retained": false,
+    "raw_service_principal_ids_retained": false,
+    "raw_user_ids_retained": false,
+    "raw_user_principal_names_retained": false,
+    "raw_ip_addresses_retained": false,
+    "raw_event_ids_retained": false,
+    "raw_correlation_ids_retained": false,
+    "raw_oauth_grant_values_retained": false,
+    "raw_graph_payloads_retained": false,
+    "application_alias_format": "APP-NNN",
+    "subject_alias_format": "SUBJECT-NNN"
+  },
+  "correlation_model": {
+    "application_aliasing": "IN_MEMORY_ONLY",
+    "subject_aliasing": "IN_MEMORY_ONLY",
+    "consent_activity_classification": true,
+    "permission_change_presence_detection": true,
+    "sign_in_outcome_correlation": true,
+    "risk_category_correlation": true
+  },
+  "evidence_integration": {
+    "feature_3_sanitized_evidence_registration_required": true,
+    "sha256_fingerprint_required": true,
+    "custody_chain_required": true,
+    "raw_source_copy_allowed": false
+  }
+}
