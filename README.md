@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 5 — Enterprise Application & OAuth Incident Investigation — foundation ready for live validation. Application sign-ins and application-management/OAuth audit activity can now be correlated locally through privacy-preserving APP and SUBJECT aliases, reduced to sanitized consent and permission-change signals, and registered through the Feature 3 SHA-256/custody workflow without retaining raw tenant application identifiers, user identifiers, OAuth grant values, or Graph payloads. The foundation reuses AuditLog.Read.All and introduces no new Graph permissions.
+Feature 5 — Enterprise Application & OAuth Incident Investigation — complete. Privacy-preserving APP and SUBJECT alias correlation is implemented and live read-only validation confirmed bounded access to application sign-ins and ApplicationManagement/OAuth audit activity through the dedicated Graph application using AuditLog.Read.All. The workflow validated sanitized transformation plus Feature 3 SHA-256 and custody integration without retaining raw tenant identifiers, OAuth grant values, Graph payloads, or live activity counts. Next: Feature 6 — Endpoint Security Incident Investigation.
 
 The repository is initially private while implementation and validation are in progress.
 

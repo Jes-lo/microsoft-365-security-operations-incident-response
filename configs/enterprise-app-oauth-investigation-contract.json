@@ -2,8 +2,8 @@
   "schema_version": 1,
   "feature": 5,
   "name": "Enterprise Application & OAuth Incident Investigation",
-  "phase": "FOUNDATION_READY_FOR_LIVE_VALIDATION",
-  "live_validation_state": "NOT_RUN",
+  "phase": "LIVE_VALIDATION_COMPLETE",
+  "live_validation_state": "ENTERPRISE_APPLICATION_OAUTH_INCIDENT_INVESTIGATION_COMPLETE",
   "investigation_surfaces": [
     {
       "id": "entra-application-sign-ins",
@@ -67,5 +67,50 @@
     "sha256_fingerprint_required": true,
     "custody_chain_required": true,
     "raw_source_copy_allowed": false
+  },
+  "live_validation": {
+    "validation_date_utc": "2026-10-12",
+    "authentication_mode": "DELEGATED_READ_ONLY",
+    "dedicated_application_context_validated": true,
+    "tenant_context_validated": true,
+    "account_context_validated_without_persistence": true,
+    "required_functional_scopes": [
+      "AuditLog.Read.All"
+    ],
+    "missing_required_scope_count": 0,
+    "unexpected_scope_count": 0,
+    "write_capable_scope_count": 0,
+    "lookback_hours": 24,
+    "maximum_records_per_surface": 25,
+    "graph_get_count": 2,
+    "tenant_write_count": 0,
+    "application_management_filter_mode": "LOCAL_POST_READ",
+    "current_permission_grant_inventory_query_count": 0,
+    "new_permission_grant_count": 0,
+    "new_role_assignment_count": 0,
+    "raw_identifiers_printed": false,
+    "raw_identifiers_retained": false,
+    "raw_oauth_grant_values_retained": false,
+    "raw_graph_responses_printed": false,
+    "raw_graph_responses_retained": false,
+    "live_activity_counts_committed_to_git": false,
+    "temporary_live_inputs_committed_to_git": false,
+    "sanitized_live_transformation_validated": true,
+    "feature_3_evidence_registration_validated": true,
+    "feature_3_custody_integrity_validated": true,
+    "sanitized_evidence_path": "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md",
+    "sanitized_evidence_sha256": "c9a5733755ceae111511900bf1517441e9b22ae7fa3db69f48f56aa82be939d3",
+    "surfaces": [
+      {
+        "id": "entra-application-sign-ins",
+        "classification": "AVAILABLE",
+        "method": "GET"
+      },
+      {
+        "id": "entra-application-management-audit",
+        "classification": "AVAILABLE",
+        "method": "GET"
+      }
+    ]
   }
 }

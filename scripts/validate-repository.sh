@@ -34,6 +34,7 @@ required_files=(
   "automation/powershell/Convert-IdentitySecuritySignals.ps1"
   "configs/identity-incident-investigation-contract.json"
   "configs/enterprise-app-oauth-investigation-contract.json"
+  "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "automation/powershell/Convert-EnterpriseAppOAuthSignals.ps1"
   "docs/architecture/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION.md"
   "docs/decisions/ADR-007-privacy-preserving-enterprise-app-oauth-investigation.md"
