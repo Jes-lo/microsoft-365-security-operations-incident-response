@@ -27,6 +27,12 @@ required_files=(
   "docs/decisions/ADR-002-staged-least-privilege-signal-discovery.md"
   "docs/architecture/SECURITY-SIGNAL-CAPABILITY-MATRIX.md"
   "configs/security-signal-capabilities.json"
+  "tests/test-identity-incident-investigation.sh"
+  "scripts/validate-identity-incident-investigation.sh"
+  "docs/decisions/ADR-006-privacy-preserving-identity-investigation.md"
+  "docs/architecture/IDENTITY-SECURITY-INCIDENT-INVESTIGATION.md"
+  "automation/powershell/Convert-IdentitySecuritySignals.ps1"
+  "configs/identity-incident-investigation-contract.json"
   "tests/test-incident-case-foundation.sh"
   "scripts/validate-incident-case-foundation.sh"
   "docs/decisions/ADR-005-local-first-incident-case-evidence.md"
@@ -214,5 +220,8 @@ pass "file-size guardrail valid"
 
 ./scripts/validate-incident-case-foundation.sh
 ./tests/test-incident-case-foundation.sh
+
+./scripts/validate-identity-incident-investigation.sh
+./tests/test-identity-incident-investigation.sh
 
 printf 'REPOSITORY_VALIDATION=PASS\n'

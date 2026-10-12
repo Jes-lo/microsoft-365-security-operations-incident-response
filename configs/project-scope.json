@@ -3,8 +3,8 @@
   "project": "microsoft-365-security-operations-incident-response",
   "display_name": "Microsoft 365 Security Operations & Incident Response",
   "project_type": "portfolio-security-lab",
-  "current_feature": 3,
-  "current_state": "incident-case-evidence-foundation-complete",
+  "current_feature": 4,
+  "current_state": "identity-security-incident-investigation-foundation-ready-for-live-validation",
   "production_deployment_claimed": false,
   "paid_or_trial_features_required": false,
   "operating_principles": [

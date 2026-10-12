@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "feature": 4,
+  "phase": "FOUNDATION_READY_FOR_LIVE_VALIDATION",
+  "live_validation_state": "NOT_RUN",
+  "name": "identity-security-incident-investigation",
+  "investigation_surfaces": [
+    {
+      "id": "entra-sign-ins",
+      "feature_2_classification": "AVAILABLE",
+      "method": "GET",
+      "delegated_permission": "AuditLog.Read.All",
+      "raw_payload_retained": false
+    },
+    {
+      "id": "entra-directory-audit",
+      "feature_2_classification": "AVAILABLE",
+      "method": "GET",
+      "delegated_permission": "AuditLog.Read.All",
+      "raw_payload_retained": false
+    },
+    {
+      "id": "entra-risk-detections",
+      "feature_2_classification": "AVAILABLE",
+      "method": "GET",
+      "delegated_permission": "IdentityRiskEvent.Read.All",
+      "raw_payload_retained": false
+    }
+  ],
+  "excluded_surfaces": [
+    {
+      "id": "entra-risky-users",
+      "feature_2_classification": "ACCESS_OR_LICENSE_DENIED",
+      "reason": "Existing environment boundary is preserved; Feature 4 does not escalate privileges or licensing."
+    }
+  ],
+  "live_query_boundary": {
+    "default_lookback_hours": 24,
+    "maximum_lookback_hours": 168,
+    "maximum_records_per_surface": 25,
+    "methods": [
+      "GET"
+    ],
+    "tenant_write_allowed": false,
+    "new_permission_grant_allowed": false,
+    "automatic_role_assignment_allowed": false,
+    "trial_activation_allowed": false
+  },
+  "privacy_boundary": {
+    "raw_user_principal_name_persisted": false,
+    "raw_user_id_persisted": false,
+    "raw_ip_address_persisted": false,
+    "raw_event_id_persisted": false,
+    "raw_correlation_id_persisted": false,
+    "raw_graph_payload_persisted": false,
+    "subject_alias_format": "SUBJECT-NNN",
+    "subject_alias_generated_in_memory": true
+  },
+  "sanitized_output": {
+    "case_id_retained": true,
+    "subject_alias_retained": true,
+    "normalized_utc_timestamp_retained": true,
+    "sign_in_outcome_retained": true,
+    "risk_level_retained": true,
+    "directory_audit_category_retained": true,
+    "directory_audit_result_retained": true,
+    "risk_event_type_retained": true,
+    "risk_state_retained": true,
+    "source_identifiers_retained": false
+  },
+  "feature_3_integration": {
+    "sanitized_summary_can_be_registered_as_evidence": true,
+    "sha256_evidence_registration_required": true,
+    "custody_integrity_verification_required": true,
+    "raw_source_copy_required": false
+  }
+}
