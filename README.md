@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 5 — Enterprise Application & OAuth Incident Investigation — complete. Privacy-preserving APP and SUBJECT alias correlation is implemented and live read-only validation confirmed bounded access to application sign-ins and ApplicationManagement/OAuth audit activity through the dedicated Graph application using AuditLog.Read.All. The workflow validated sanitized transformation plus Feature 3 SHA-256 and custody integration without retaining raw tenant identifiers, OAuth grant values, Graph payloads, or live activity counts. Next: Feature 6 — Endpoint Security Incident Investigation.
+Feature 6 — Endpoint Security Incident Investigation — foundation ready for live validation. Microsoft Graph unified security alerts and incidents can now be correlated locally through privacy-preserving INCIDENT, ALERT, DEVICE, and SUBJECT aliases. Endpoint-oriented evidence is reduced to controlled security categories and can be registered through the Feature 3 SHA-256/custody workflow without retaining raw device identifiers, hostnames, users, network indicators, file artifacts, free-form alert content, or Graph payloads. The foundation uses existing read-only SecurityAlert.Read.All and SecurityIncident.Read.All permissions and performs no endpoint response actions.
 
 The repository is initially private while implementation and validation are in progress.
 
