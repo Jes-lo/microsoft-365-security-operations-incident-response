@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "discovery_mode": "read-only",
-  "live_validation_state": "NOT_RUN",
+  "live_validation_state": "AUDITLOG_READ_VALIDATED",
   "tenant_write_allowed": false,
   "capabilities": [
     {
@@ -15,7 +15,18 @@
       "documented_license_requirement": "NONE_EXPLICIT_IN_API_DOCUMENTATION",
       "environment_dependency": "LOG_RETENTION_AND_TENANT_ACTIVITY",
       "planned_classification": "CAPABILITY_DISCOVERY_PENDING",
-      "tenant_write_allowed": false
+      "tenant_write_allowed": false,
+      "live_validation": {
+        "classification": "AVAILABLE",
+        "http_status": 200,
+        "sample_row_count": 1,
+        "authentication_application": "DEDICATED_PROJECT_APP",
+        "default_graph_powershell_application_used": false,
+        "write_scope_count": 0,
+        "unexpected_scope_count": 0,
+        "raw_evidence_retained": false,
+        "tenant_write_performed_by_probe": false
+      }
     },
     {
       "id": "entra-sign-ins",
@@ -28,7 +39,18 @@
       "documented_license_requirement": "MICROSOFT_ENTRA_ID_P1_OR_P2",
       "environment_dependency": "LOG_RETENTION_AND_TENANT_ACTIVITY",
       "planned_classification": "CAPABILITY_DISCOVERY_PENDING",
-      "tenant_write_allowed": false
+      "tenant_write_allowed": false,
+      "live_validation": {
+        "classification": "AVAILABLE",
+        "http_status": 200,
+        "sample_row_count": 1,
+        "authentication_application": "DEDICATED_PROJECT_APP",
+        "default_graph_powershell_application_used": false,
+        "write_scope_count": 0,
+        "unexpected_scope_count": 0,
+        "raw_evidence_retained": false,
+        "tenant_write_performed_by_probe": false
+      }
     },
     {
       "id": "defender-alerts",
