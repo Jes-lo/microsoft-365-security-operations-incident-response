@@ -89,3 +89,23 @@ Feature 3 answered:
 Feature 4 answers:
 
 > How can identity signals be safely correlated and investigated without retaining tenant identifiers in the portfolio repository?
+
+## Live validation outcome
+
+Feature 4 was validated live through the dedicated Microsoft Graph application using delegated read-only authentication.
+
+The validated surfaces were:
+
+- sign-ins;
+- directory audit;
+- risk detections.
+
+The live session was limited to a 24-hour lookback and a maximum of 25 returned records per surface.
+
+The validation performed exactly three GET requests and zero tenant write requests.
+
+The authenticated context had zero missing required scopes, zero unexpected scopes, and zero write-capable scopes.
+
+The `entra-risky-users` surface was deliberately excluded and its existing `ACCESS_OR_LICENSE_DENIED` classification was preserved without privilege or licensing escalation.
+
+Live activity counts and raw Microsoft Graph responses are intentionally not committed to Git. The repository retains only sanitized capability evidence.

@@ -47,3 +47,15 @@ No Graph write permission, new role assignment, paid license, or trial activatio
 ## Consequence
 
 The portfolio can demonstrate meaningful identity-security correlation while preserving tenant privacy and existing least-privilege boundaries.
+
+## Live validation confirmation
+
+The privacy-preserving design was subsequently validated against the live tenant.
+
+The dedicated application successfully accessed the three authorized identity investigation surfaces using delegated read-only permissions.
+
+No write-capable or unexpected scopes were present.
+
+No raw tenant identifiers, raw Graph payloads, or live activity counts are committed as portfolio artifacts.
+
+The risky-users access/license boundary remains unchanged.

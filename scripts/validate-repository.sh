@@ -33,6 +33,7 @@ required_files=(
   "docs/architecture/IDENTITY-SECURITY-INCIDENT-INVESTIGATION.md"
   "automation/powershell/Convert-IdentitySecuritySignals.ps1"
   "configs/identity-incident-investigation-contract.json"
+  "docs/evidence/IDENTITY-SECURITY-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "tests/test-incident-case-foundation.sh"
   "scripts/validate-incident-case-foundation.sh"
   "docs/decisions/ADR-005-local-first-incident-case-evidence.md"

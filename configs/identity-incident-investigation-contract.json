@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "feature": 4,
-  "phase": "FOUNDATION_READY_FOR_LIVE_VALIDATION",
-  "live_validation_state": "NOT_RUN",
+  "phase": "LIVE_VALIDATION_COMPLETE",
+  "live_validation_state": "IDENTITY_SECURITY_INCIDENT_INVESTIGATION_COMPLETE",
   "name": "identity-security-incident-investigation",
   "investigation_surfaces": [
     {
@@ -73,5 +73,48 @@
     "sha256_evidence_registration_required": true,
     "custody_integrity_verification_required": true,
     "raw_source_copy_required": false
+  },
+  "live_validation": {
+    "validation_date_utc": "2026-10-12",
+    "authentication_mode": "DELEGATED_READ_ONLY",
+    "dedicated_application_context_validated": true,
+    "tenant_context_validated": true,
+    "account_context_validated_without_persistence": true,
+    "required_functional_scopes": [
+      "AuditLog.Read.All",
+      "IdentityRiskEvent.Read.All"
+    ],
+    "missing_required_scope_count": 0,
+    "unexpected_scope_count": 0,
+    "write_capable_scope_count": 0,
+    "lookback_hours": 24,
+    "maximum_records_per_surface": 25,
+    "graph_get_count": 3,
+    "tenant_write_count": 0,
+    "risky_users_queried": false,
+    "raw_identifiers_printed": false,
+    "raw_identifiers_retained": false,
+    "raw_graph_responses_printed": false,
+    "raw_graph_responses_retained": false,
+    "live_activity_counts_committed_to_git": false,
+    "sanitized_evidence_path": "docs/evidence/IDENTITY-SECURITY-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md",
+    "sanitized_evidence_sha256": "01e82273dd6672f547671e91c8be935f6530dbb050905674ffee7fa79ea0fe80",
+    "surfaces": [
+      {
+        "id": "entra-sign-ins",
+        "classification": "AVAILABLE",
+        "method": "GET"
+      },
+      {
+        "id": "entra-directory-audit",
+        "classification": "AVAILABLE",
+        "method": "GET"
+      },
+      {
+        "id": "entra-risk-detections",
+        "classification": "AVAILABLE",
+        "method": "GET"
+      }
+    ]
   }
 }

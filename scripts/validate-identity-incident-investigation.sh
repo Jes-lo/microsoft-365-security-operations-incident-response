@@ -16,12 +16,16 @@ ROOT="$(
 
 CONTRACT="$ROOT/configs/identity-incident-investigation-contract.json"
 CONVERTER="$ROOT/automation/powershell/Convert-IdentitySecuritySignals.ps1"
+EVIDENCE="$ROOT/docs/evidence/IDENTITY-SECURITY-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
 
 [[ -f "$CONTRACT" ]] \
   || fail "identity investigation contract missing"
 
 [[ -f "$CONVERTER" ]] \
   || fail "identity signal converter missing"
+
+[[ -f "$EVIDENCE" ]] \
+  || fail "sanitized live validation evidence missing"
 
 jq -e . "$CONTRACT" >/dev/null \
   || fail "identity investigation contract invalid"
@@ -32,11 +36,11 @@ jq -e . "$CONTRACT" >/dev/null \
 [[ "$(jq -r '.feature' "$CONTRACT")" == "4" ]] \
   || fail "unexpected feature number"
 
-[[ "$(jq -r '.phase' "$CONTRACT")" == "FOUNDATION_READY_FOR_LIVE_VALIDATION" ]] \
+[[ "$(jq -r '.phase' "$CONTRACT")" == "LIVE_VALIDATION_COMPLETE" ]] \
   || fail "unexpected Feature 4 phase"
 
-[[ "$(jq -r '.live_validation_state' "$CONTRACT")" == "NOT_RUN" ]] \
-  || fail "live validation must remain NOT_RUN in Feature 4A"
+[[ "$(jq -r '.live_validation_state' "$CONTRACT")" == "IDENTITY_SECURITY_INCIDENT_INVESTIGATION_COMPLETE" ]] \
+  || fail "unexpected Feature 4 live validation state"
 
 SURFACE_COUNT="$(
   jq '.investigation_surfaces | length' \
@@ -183,5 +187,105 @@ grep -Fq \
   'raw_graph_payload_retained = $false' \
   "$CONVERTER" \
   || fail "raw Graph payload non-retention assertion missing"
+
+[[ "$(
+  jq -r '.live_validation.authentication_mode' "$CONTRACT"
+)" == "DELEGATED_READ_ONLY" ]] \
+  || fail "unexpected live authentication mode"
+
+[[ "$(
+  jq -r '.live_validation.missing_required_scope_count' "$CONTRACT"
+)" == "0" ]] \
+  || fail "missing required live scopes"
+
+[[ "$(
+  jq -r '.live_validation.unexpected_scope_count' "$CONTRACT"
+)" == "0" ]] \
+  || fail "unexpected live scopes recorded"
+
+[[ "$(
+  jq -r '.live_validation.write_capable_scope_count' "$CONTRACT"
+)" == "0" ]] \
+  || fail "write-capable live scopes recorded"
+
+[[ "$(
+  jq -r '.live_validation.graph_get_count' "$CONTRACT"
+)" == "3" ]] \
+  || fail "unexpected Graph GET count"
+
+[[ "$(
+  jq -r '.live_validation.tenant_write_count' "$CONTRACT"
+)" == "0" ]] \
+  || fail "tenant writes recorded"
+
+[[ "$(
+  jq -r '.live_validation.risky_users_queried' "$CONTRACT"
+)" == "false" ]] \
+  || fail "risky-users query unexpectedly recorded"
+
+[[ "$(
+  jq -r '.live_validation.raw_identifiers_retained' "$CONTRACT"
+)" == "false" ]] \
+  || fail "raw identifier retention recorded"
+
+[[ "$(
+  jq -r '.live_validation.raw_graph_responses_retained' "$CONTRACT"
+)" == "false" ]] \
+  || fail "raw Graph response retention recorded"
+
+[[ "$(
+  jq -r '.live_validation.live_activity_counts_committed_to_git' "$CONTRACT"
+)" == "false" ]] \
+  || fail "live activity count retention recorded"
+
+AVAILABLE_LIVE_SURFACE_COUNT="$(
+  jq \
+    '[.live_validation.surfaces[] |
+      select(
+        .classification == "AVAILABLE"
+        and
+        .method == "GET"
+      )
+    ] |
+    length' \
+    "$CONTRACT"
+)"
+
+[[ "$AVAILABLE_LIVE_SURFACE_COUNT" -eq 3 ]] \
+  || fail "unexpected live investigation surface result"
+
+EXPECTED_EVIDENCE_PATH="$(
+  jq -r \
+    '.live_validation.sanitized_evidence_path' \
+    "$CONTRACT"
+)"
+
+[[ "$EXPECTED_EVIDENCE_PATH" == "docs/evidence/IDENTITY-SECURITY-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md" ]] \
+  || fail "unexpected sanitized evidence path"
+
+EXPECTED_EVIDENCE_SHA="$(
+  jq -r \
+    '.live_validation.sanitized_evidence_sha256' \
+    "$CONTRACT"
+)"
+
+[[ "$EXPECTED_EVIDENCE_SHA" =~ ^[0-9a-f]{64}$ ]] \
+  || fail "invalid sanitized evidence SHA-256"
+
+ACTUAL_EVIDENCE_SHA="$(
+  sha256sum "$EVIDENCE" |
+  awk '{print $1}'
+)"
+
+[[ "$ACTUAL_EVIDENCE_SHA" == "$EXPECTED_EVIDENCE_SHA" ]] \
+  || fail "sanitized live evidence SHA-256 mismatch"
+
+if grep -nEI \
+  -- \
+  '\b[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\b|[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' \
+  "$EVIDENCE"
+then
+  fail "raw identifier pattern detected in live evidence"
+fi
 
 printf 'IDENTITY_INVESTIGATION_VALIDATION=PASS\n'
