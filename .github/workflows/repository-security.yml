@@ -1,0 +1,36 @@
+name: Repository Security
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-validation:
+    name: Repository validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Validate shell syntax
+        shell: bash
+        run: |
+          bash -n scripts/validate-repository.sh
+          bash -n tests/test-repository-validation.sh
+
+      - name: Run repository security validation
+        shell: bash
+        run: ./scripts/validate-repository.sh
+
+      - name: Run adversarial validation tests
+        shell: bash
+        run: ./tests/test-repository-validation.sh

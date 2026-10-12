@@ -1,0 +1,40 @@
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Secrets and credentials
+*.pfx
+*.p12
+*.pem
+*.key
+*.jks
+*.keystore
+*.cer
+*.crt
+*.token
+*.secret
+
+# Private evidence and temporary data
+.private/
+evidence-private/
+tmp/
+temp/
+*.local.json
+
+# PowerShell
+*.clixml
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
