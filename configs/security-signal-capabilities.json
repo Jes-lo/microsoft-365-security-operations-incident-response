@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "discovery_mode": "read-only",
-  "live_validation_state": "AUDITLOG_READ_VALIDATED",
+  "live_validation_state": "SECURITY_SIGNAL_DISCOVERY_COMPLETE",
   "tenant_write_allowed": false,
   "capabilities": [
     {
@@ -63,7 +63,18 @@
       "documented_license_requirement": "PRODUCT_AND_SIGNAL_DEPENDENT",
       "environment_dependency": "SUPPORTED_DEFENDER_SIGNAL_SOURCE",
       "planned_classification": "CAPABILITY_DISCOVERY_PENDING",
-      "tenant_write_allowed": false
+      "tenant_write_allowed": false,
+      "live_validation": {
+        "classification": "AVAILABLE",
+        "http_status": 200,
+        "sample_row_count": 0,
+        "authentication_application": "DEDICATED_PROJECT_APP",
+        "default_graph_powershell_application_used": false,
+        "write_scope_count": 0,
+        "unexpected_scope_count": 0,
+        "raw_evidence_retained": false,
+        "tenant_write_performed_by_probe": false
+      }
     },
     {
       "id": "defender-incidents",
@@ -76,7 +87,18 @@
       "documented_license_requirement": "PRODUCT_AND_SIGNAL_DEPENDENT",
       "environment_dependency": "SUPPORTED_DEFENDER_SIGNAL_SOURCE",
       "planned_classification": "CAPABILITY_DISCOVERY_PENDING",
-      "tenant_write_allowed": false
+      "tenant_write_allowed": false,
+      "live_validation": {
+        "classification": "AVAILABLE",
+        "http_status": 200,
+        "sample_row_count": 0,
+        "authentication_application": "DEDICATED_PROJECT_APP",
+        "default_graph_powershell_application_used": false,
+        "write_scope_count": 0,
+        "unexpected_scope_count": 0,
+        "raw_evidence_retained": false,
+        "tenant_write_performed_by_probe": false
+      }
     },
     {
       "id": "entra-risky-users",
@@ -89,7 +111,18 @@
       "documented_license_requirement": "MICROSOFT_ENTRA_ID_P2",
       "environment_dependency": "IDENTITY_PROTECTION_DATA",
       "planned_classification": "LICENSE_DISCOVERY_PENDING",
-      "tenant_write_allowed": false
+      "tenant_write_allowed": false,
+      "live_validation": {
+        "classification": "ACCESS_OR_LICENSE_DENIED",
+        "http_status": 403,
+        "sample_row_count": null,
+        "authentication_application": "DEDICATED_PROJECT_APP",
+        "default_graph_powershell_application_used": false,
+        "write_scope_count": 0,
+        "unexpected_scope_count": 0,
+        "raw_evidence_retained": false,
+        "tenant_write_performed_by_probe": false
+      }
     },
     {
       "id": "entra-risk-detections",
@@ -102,7 +135,18 @@
       "documented_license_requirement": "MICROSOFT_ENTRA_ID_P1_OR_P2",
       "environment_dependency": "IDENTITY_PROTECTION_DATA",
       "planned_classification": "LICENSE_DISCOVERY_PENDING",
-      "tenant_write_allowed": false
+      "tenant_write_allowed": false,
+      "live_validation": {
+        "classification": "AVAILABLE",
+        "http_status": 200,
+        "sample_row_count": 1,
+        "authentication_application": "DEDICATED_PROJECT_APP",
+        "default_graph_powershell_application_used": false,
+        "write_scope_count": 0,
+        "unexpected_scope_count": 0,
+        "raw_evidence_retained": false,
+        "tenant_write_performed_by_probe": false
+      }
     }
   ]
 }

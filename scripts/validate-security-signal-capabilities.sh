@@ -24,7 +24,7 @@ LIVE_VALIDATION_STATE="$(
 )"
 
 case "$LIVE_VALIDATION_STATE" in
-  NOT_RUN|AUDITLOG_READ_VALIDATED|AUDITLOG_READ_PARTIAL)
+  NOT_RUN|AUDITLOG_READ_VALIDATED|AUDITLOG_READ_PARTIAL|SECURITY_SIGNAL_DISCOVERY_COMPLETE)
     ;;
   *)
     fail "unexpected live validation state"
@@ -162,20 +162,38 @@ LIVE_RESULT_COUNT="$(
     "$FILE"
 )"
 
-if [[ "$LIVE_VALIDATION_STATE" == "NOT_RUN" ]]; then
+case "$LIVE_VALIDATION_STATE" in
+  NOT_RUN)
+    EXPECTED_LIVE_COUNT=0
+    ;;
+  AUDITLOG_READ_VALIDATED|AUDITLOG_READ_PARTIAL)
+    EXPECTED_LIVE_COUNT=2
+    ;;
+  SECURITY_SIGNAL_DISCOVERY_COMPLETE)
+    EXPECTED_LIVE_COUNT=6
+    ;;
+esac
 
-  [[ "$LIVE_RESULT_COUNT" -eq 0 ]] \
-    || fail "NOT_RUN state cannot contain live validation results"
+[[ "$LIVE_RESULT_COUNT" -eq "$EXPECTED_LIVE_COUNT" ]] \
+  || fail "unexpected live validation result count"
 
-else
+if [[ "$LIVE_VALIDATION_STATE" != "NOT_RUN" ]]; then
 
-  [[ "$LIVE_RESULT_COUNT" -eq 2 ]] \
-    || fail "AuditLog live state requires exactly two live validation results"
-
-  for ID in \
-    "entra-directory-audit" \
+  REQUIRED_LIVE_IDS=(
+    "entra-directory-audit"
     "entra-sign-ins"
-  do
+  )
+
+  if [[ "$LIVE_VALIDATION_STATE" == "SECURITY_SIGNAL_DISCOVERY_COMPLETE" ]]; then
+    REQUIRED_LIVE_IDS+=(
+      "defender-alerts"
+      "defender-incidents"
+      "entra-risky-users"
+      "entra-risk-detections"
+    )
+  fi
+
+  for ID in "${REQUIRED_LIVE_IDS[@]}"; do
 
     RESULT_COUNT="$(
       jq \
@@ -192,7 +210,7 @@ else
     )"
 
     [[ "$RESULT_COUNT" -eq 1 ]] \
-      || fail "missing AuditLog live result for $ID"
+      || fail "missing live validation result for $ID"
 
   done
 
@@ -204,6 +222,8 @@ else
           .live_validation.classification != "AVAILABLE"
           and
           .live_validation.classification != "ACCESS_OR_LICENSE_DENIED"
+          and
+          .live_validation.classification != "ENDPOINT_OR_PRODUCT_UNAVAILABLE"
         )
       ] |
       length' \
@@ -213,22 +233,36 @@ else
   [[ "$INVALID_CLASSIFICATION_COUNT" -eq 0 ]] \
     || fail "unexpected live capability classification"
 
-  LIVE_HTTP_FAILURE_COUNT="$(
+  INVALID_HTTP_MAPPING_COUNT="$(
     jq \
       '[.capabilities[] |
         select(has("live_validation")) |
         select(
-          .live_validation.classification == "AVAILABLE"
-          and
-          .live_validation.http_status != 200
+          (
+            .live_validation.classification == "AVAILABLE"
+            and
+            .live_validation.http_status != 200
+          )
+          or
+          (
+            .live_validation.classification == "ACCESS_OR_LICENSE_DENIED"
+            and
+            .live_validation.http_status != 403
+          )
+          or
+          (
+            .live_validation.classification == "ENDPOINT_OR_PRODUCT_UNAVAILABLE"
+            and
+            .live_validation.http_status != 404
+          )
         )
       ] |
       length' \
       "$FILE"
   )"
 
-  [[ "$LIVE_HTTP_FAILURE_COUNT" -eq 0 ]] \
-    || fail "AVAILABLE capability does not have HTTP 200"
+  [[ "$INVALID_HTTP_MAPPING_COUNT" -eq 0 ]] \
+    || fail "invalid live HTTP/classification mapping"
 
   LIVE_WRITE_SCOPE_COUNT="$(
     jq \
