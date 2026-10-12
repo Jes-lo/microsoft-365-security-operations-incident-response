@@ -62,3 +62,28 @@ A later live phase may query only the two already-authorized audit surfaces unde
 Current enterprise-application permission-grant inventory is deliberately outside Feature 5A because querying additional directory or application inventory must not silently expand the Graph permission boundary.
 
 If a later investigation genuinely requires an additional Graph permission, that requirement must be reviewed as a separate least-privilege gate rather than automatically granted.
+
+## Live validation outcome
+
+Feature 5 was validated against the live tenant through the dedicated Microsoft Graph application using delegated read-only authentication.
+
+The session used only `AuditLog.Read.All` as its required functional permission.
+
+The validated surfaces were:
+
+- application-related Microsoft Entra sign-ins;
+- Microsoft Entra directory audit for application-management and OAuth-related activity.
+
+Each source was bounded to a 24-hour lookback and a maximum of 25 returned records.
+
+The validation performed exactly two Graph GET requests and zero tenant write requests.
+
+Application-management events were isolated locally after the bounded directory-audit read.
+
+The authenticated context contained zero missing required scopes, zero unexpected scopes, and zero write-capable scopes.
+
+No current permission-grant inventory query was performed and no additional directory/application permission was introduced.
+
+The live data was transformed through the Feature 5 privacy-preserving converter and validated through the Feature 3 SHA-256 and custody workflow.
+
+Raw tenant identifiers, raw OAuth grant values, raw Graph responses, temporary live inputs, and live activity counts are intentionally not committed to Git.

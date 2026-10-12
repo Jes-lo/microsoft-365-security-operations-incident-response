@@ -43,3 +43,17 @@ The evidence record stores a SHA-256 fingerprint and custody metadata while raw 
 The portfolio can demonstrate enterprise-application and OAuth incident-investigation logic without publishing tenant identifiers or consent/grant content.
 
 The trade-off is that some current-state application inventory questions remain outside the foundation until a justified permission boundary is approved.
+
+## Live validation confirmation
+
+The privacy-preserving enterprise-application and OAuth investigation design was subsequently validated against the live tenant.
+
+The dedicated Microsoft Graph application successfully accessed the authorized sign-in and directory-audit surfaces using only the existing `AuditLog.Read.All` functional permission.
+
+The session contained no unexpected or write-capable scopes and performed zero tenant writes.
+
+Application-management events were isolated locally after the bounded directory-audit read.
+
+The resulting live data passed the APP/SUBJECT alias transformation and Feature 3 evidence/custody workflow without retaining raw tenant identifiers, OAuth grant values, Graph responses, or live activity counts.
+
+Current application permission-grant inventory remains deliberately outside the validated scope and was not queried.
