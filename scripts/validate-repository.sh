@@ -21,6 +21,12 @@ required_files=(
   "THIRD_PARTY_NOTICES.md"
   "TRADEMARKS.md"
   "configs/project-scope.json"
+  "tests/test-security-signal-capabilities.sh"
+  "scripts/validate-security-signal-capabilities.sh"
+  "automation/powershell/Invoke-SecuritySignalCapabilityDiscovery.ps1"
+  "docs/decisions/ADR-002-staged-least-privilege-signal-discovery.md"
+  "docs/architecture/SECURITY-SIGNAL-CAPABILITY-MATRIX.md"
+  "configs/security-signal-capabilities.json"
   "docs/architecture/SECURITY-OPERATIONS-ARCHITECTURE.md"
   "docs/decisions/ADR-001-security-operations-safety-and-evidence-boundaries.md"
   "docs/security/PRIVACY-AND-EVIDENCE-HANDLING.md"
@@ -191,5 +197,7 @@ LARGE_FILE_COUNT="$(
   || fail "tracked-source tree contains file larger than 1 MiB"
 
 pass "file-size guardrail valid"
+
+"$ROOT/scripts/validate-security-signal-capabilities.sh" "$ROOT/configs/security-signal-capabilities.json" >/dev/null
 
 printf 'REPOSITORY_VALIDATION=PASS\n'

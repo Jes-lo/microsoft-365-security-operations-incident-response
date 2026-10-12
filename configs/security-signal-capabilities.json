@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "discovery_mode": "read-only",
+  "live_validation_state": "NOT_RUN",
+  "tenant_write_allowed": false,
+  "capabilities": [
+    {
+      "id": "entra-directory-audit",
+      "domain": "identity",
+      "display_name": "Microsoft Entra directory audit logs",
+      "graph_api_version": "v1.0",
+      "method": "GET",
+      "endpoint": "/v1.0/auditLogs/directoryAudits?$top=1",
+      "least_privileged_delegated_permission": "AuditLog.Read.All",
+      "documented_license_requirement": "NONE_EXPLICIT_IN_API_DOCUMENTATION",
+      "environment_dependency": "LOG_RETENTION_AND_TENANT_ACTIVITY",
+      "planned_classification": "CAPABILITY_DISCOVERY_PENDING",
+      "tenant_write_allowed": false
+    },
+    {
+      "id": "entra-sign-ins",
+      "domain": "identity",
+      "display_name": "Microsoft Entra sign-in logs",
+      "graph_api_version": "v1.0",
+      "method": "GET",
+      "endpoint": "/v1.0/auditLogs/signIns?$top=1",
+      "least_privileged_delegated_permission": "AuditLog.Read.All",
+      "documented_license_requirement": "MICROSOFT_ENTRA_ID_P1_OR_P2",
+      "environment_dependency": "LOG_RETENTION_AND_TENANT_ACTIVITY",
+      "planned_classification": "CAPABILITY_DISCOVERY_PENDING",
+      "tenant_write_allowed": false
+    },
+    {
+      "id": "defender-alerts",
+      "domain": "security",
+      "display_name": "Microsoft Defender XDR security alerts",
+      "graph_api_version": "v1.0",
+      "method": "GET",
+      "endpoint": "/v1.0/security/alerts_v2?$top=1",
+      "least_privileged_delegated_permission": "SecurityAlert.Read.All",
+      "documented_license_requirement": "PRODUCT_AND_SIGNAL_DEPENDENT",
+      "environment_dependency": "SUPPORTED_DEFENDER_SIGNAL_SOURCE",
+      "planned_classification": "CAPABILITY_DISCOVERY_PENDING",
+      "tenant_write_allowed": false
+    },
+    {
+      "id": "defender-incidents",
+      "domain": "security",
+      "display_name": "Microsoft Defender XDR incidents",
+      "graph_api_version": "v1.0",
+      "method": "GET",
+      "endpoint": "/v1.0/security/incidents?$top=1",
+      "least_privileged_delegated_permission": "SecurityIncident.Read.All",
+      "documented_license_requirement": "PRODUCT_AND_SIGNAL_DEPENDENT",
+      "environment_dependency": "SUPPORTED_DEFENDER_SIGNAL_SOURCE",
+      "planned_classification": "CAPABILITY_DISCOVERY_PENDING",
+      "tenant_write_allowed": false
+    },
+    {
+      "id": "entra-risky-users",
+      "domain": "identity-protection",
+      "display_name": "Microsoft Entra risky users",
+      "graph_api_version": "v1.0",
+      "method": "GET",
+      "endpoint": "/v1.0/identityProtection/riskyUsers?$top=1",
+      "least_privileged_delegated_permission": "IdentityRiskyUser.Read.All",
+      "documented_license_requirement": "MICROSOFT_ENTRA_ID_P2",
+      "environment_dependency": "IDENTITY_PROTECTION_DATA",
+      "planned_classification": "LICENSE_DISCOVERY_PENDING",
+      "tenant_write_allowed": false
+    },
+    {
+      "id": "entra-risk-detections",
+      "domain": "identity-protection",
+      "display_name": "Microsoft Entra risk detections",
+      "graph_api_version": "v1.0",
+      "method": "GET",
+      "endpoint": "/v1.0/identityProtection/riskDetections?$top=1",
+      "least_privileged_delegated_permission": "IdentityRiskEvent.Read.All",
+      "documented_license_requirement": "MICROSOFT_ENTRA_ID_P1_OR_P2",
+      "environment_dependency": "IDENTITY_PROTECTION_DATA",
+      "planned_classification": "LICENSE_DISCOVERY_PENDING",
+      "tenant_write_allowed": false
+    }
+  ]
+}
