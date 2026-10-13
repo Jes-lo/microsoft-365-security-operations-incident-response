@@ -6,9 +6,11 @@ This policy applies to the repository, project automation, security evidence, in
 
 ## Reporting a security issue
 
-Do not publish credentials, tenant identifiers, authentication material, sensitive evidence, or exploit details in a public issue.
+Do not disclose credentials, tenant identifiers, authentication material, sensitive evidence, exploit details, or other confidential security information in a public issue, discussion, pull request, review, or comment.
 
-Security concerns should be reported privately to the repository owner.
+For the public repository, use GitHub Private Vulnerability Reporting through the repository security advisory interface (`Security` → `Advisories` → `Report a vulnerability`). If private vulnerability reporting is temporarily unavailable, contact the repository owner privately through GitHub before sharing sensitive details.
+
+Public issues and pull requests are not approved channels for confidential vulnerability reports.
 
 ## Credentials and secrets
 
@@ -66,6 +68,17 @@ Paid subscriptions and trials must not be activated solely to satisfy project sc
 A detected security issue must be investigated before it is dismissed or suppressed.
 
 Document the reason for any accepted limitation.
+
+## Repository integrity
+
+The default branch must be protected against force pushes and deletion.
+
+Repository changes should be introduced through pull requests and validated by the repository security workflow before merge.
+
+GitHub Actions must use read-only `GITHUB_TOKEN` permissions by default and must not be allowed to approve pull requests.
+
+Published release tags and release assets should use the strongest release-integrity protections supported by the repository.
+
 
 ## Third-party vulnerabilities
 
