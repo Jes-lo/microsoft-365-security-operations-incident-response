@@ -65,6 +65,11 @@ required_files=(
   "docs/decisions/ADR-012-separate-response-principal-readiness.md"
   "scripts/validate-containment-eradication-capability-readiness.sh"
   "tests/test-containment-eradication-capability-readiness.sh"
+  "configs/containment-eradication-response-principal-design.json"
+  "docs/architecture/CONTAINMENT-ERADICATION-RESPONSE-PRINCIPAL-DESIGN.md"
+  "docs/decisions/ADR-013-provider-and-domain-separated-response-principals.md"
+  "scripts/validate-containment-eradication-response-principal-design.sh"
+  "tests/test-containment-eradication-response-principal-design.sh"
   "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "automation/powershell/Convert-EnterpriseAppOAuthSignals.ps1"
   "docs/architecture/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION.md"
@@ -280,5 +285,8 @@ pass "file-size guardrail valid"
 
 ./scripts/validate-containment-eradication-capability-readiness.sh
 ./tests/test-containment-eradication-capability-readiness.sh
+
+./scripts/validate-containment-eradication-response-principal-design.sh
+./tests/test-containment-eradication-response-principal-design.sh
 
 printf 'REPOSITORY_VALIDATION=PASS\n'
