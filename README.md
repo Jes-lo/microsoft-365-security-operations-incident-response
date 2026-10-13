@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 8 — Containment & Eradication — capability and permission readiness discovery complete. Feature 8A provides deterministic simulation-only response plans, Feature 8B provides the explicit local action-review gate, and Feature 8C maps all eight modeled response actions to their documented Microsoft Graph or Microsoft Defender for Endpoint capability families and least-privilege permission requirements. The existing investigation principal remains read-only and must not be upgraded for response actions; any future live-response design requires a separately governed response principal. Feature 8C performs no Graph or Defender authentication, no tenant reads or writes, no endpoint or response actions, no permission grants, no role assignments, and no execution release.
+Feature 8 — Containment & Eradication — separate response-principal design complete. Feature 8A provides deterministic simulation-only response plans, Feature 8B provides the explicit local action-review gate, Feature 8C maps documented response capabilities and permissions, and Feature 8D now defines three isolated future response principals: Graph identity response, Graph application/OAuth response, and Defender endpoint response. The existing investigation principal remains read-only. No response principal, service principal, credential, permission grant, role assignment, admin consent, authentication session, tenant mutation, endpoint action, or execution release is created by Feature 8D.
 
 The repository is initially private while implementation and validation are in progress.
 

@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "feature": 8,
+  "phase": "SEPARATE_RESPONSE_PRINCIPAL_DESIGN_COMPLETE",
+  "validation_state": "SEPARATE_RESPONSE_PRINCIPAL_DESIGN_COMPLETE",
+  "mode": "LOCAL_ARCHITECTURE_ONLY",
+  "source_review": {
+    "authority": "MICROSOFT_LEARN",
+    "reviewed_date": "2026-10-13",
+    "application_context_reviewed": true,
+    "credential_security_guidance_reviewed": true,
+    "live_tenant_validation_performed": false,
+    "live_permission_validation_performed": false
+  },
+  "investigation_principal_boundary": {
+    "principal_class": "EXISTING_READ_ONLY_INVESTIGATION_PRINCIPAL",
+    "reuse_for_response": false,
+    "mutation_allowed": false,
+    "permission_expansion_allowed": false,
+    "credential_changes_allowed": false
+  },
+  "design_principles": {
+    "provider_separation": true,
+    "response_domain_separation": true,
+    "least_privilege": true,
+    "blast_radius_minimization": true,
+    "credential_isolation": true,
+    "shared_response_credentials_allowed": false,
+    "shared_response_principal_for_all_actions_allowed": false
+  },
+  "credential_policy": {
+    "preference_order": [
+      "MANAGED_IDENTITY_IF_AZURE_HOSTED_AND_COMPATIBLE",
+      "WORKLOAD_IDENTITY_FEDERATION_IF_SUPPORTED",
+      "CERTIFICATE_CREDENTIAL"
+    ],
+    "production_client_secret_allowed": false,
+    "credential_material_in_repository_allowed": false,
+    "credentials_created_by_feature_8d": false,
+    "credential_selection_status": "DEFERRED_TO_PROVISIONING_GATE"
+  },
+  "principal_topology": {
+    "principal_count": 3,
+    "planned_runtime_context": "APPLICATION_CONTEXT",
+    "principals": [
+      {
+        "principal_alias": "RESP-GRAPH-IDENTITY-001",
+        "provider": "MICROSOFT_GRAPH",
+        "response_domain": "IDENTITY_RESPONSE",
+        "resource_audience": "MICROSOFT_GRAPH",
+        "creation_status": "NOT_CREATED",
+        "credential_status": "NOT_CREATED",
+        "permission_grant_status": "NOT_GRANTED",
+        "directory_role_assignment_status": "NOT_ASSIGNED",
+        "live_authentication_status": "NOT_PERFORMED",
+        "execution_release": "NOT_RELEASED",
+        "action_types": [
+          "SUBJECT_REVOKE_SESSIONS",
+          "SUBJECT_BLOCK_SIGN_IN",
+          "SUBJECT_CREDENTIAL_RESET"
+        ],
+        "application_permission_candidates": [
+          {
+            "action_type": "SUBJECT_REVOKE_SESSIONS",
+            "permissions": [
+              "User.RevokeSessions.All"
+            ],
+            "resolution": "CONFIRMED_APPLICATION_PERMISSION_REVALIDATION_REQUIRED"
+          },
+          {
+            "action_type": "SUBJECT_BLOCK_SIGN_IN",
+            "permissions": [
+              "User.EnableDisableAccount.All",
+              "User.Read.All"
+            ],
+            "resolution": "CONFIRMED_APPLICATION_PERMISSION_ROLE_REVIEW_REQUIRED"
+          },
+          {
+            "action_type": "SUBJECT_CREDENTIAL_RESET",
+            "permissions": [
+              "User-PasswordProfile.ReadWrite.All"
+            ],
+            "resolution": "CONFIRMED_APPLICATION_PERMISSION_ROLE_REVIEW_REQUIRED"
+          }
+        ]
+      },
+      {
+        "principal_alias": "RESP-GRAPH-APPLICATION-001",
+        "provider": "MICROSOFT_GRAPH",
+        "response_domain": "APPLICATION_AND_OAUTH_RESPONSE",
+        "resource_audience": "MICROSOFT_GRAPH",
+        "creation_status": "NOT_CREATED",
+        "credential_status": "NOT_CREATED",
+        "permission_grant_status": "NOT_GRANTED",
+        "directory_role_assignment_status": "NOT_ASSIGNED",
+        "live_authentication_status": "NOT_PERFORMED",
+        "execution_release": "NOT_RELEASED",
+        "action_types": [
+          "APPLICATION_DISABLE_ACCESS",
+          "OAUTH_GRANT_REMOVE",
+          "APPLICATION_CREDENTIAL_REMEDIATE"
+        ],
+        "application_permission_candidates": [
+          {
+            "action_type": "APPLICATION_DISABLE_ACCESS",
+            "permissions": [
+              "Application.ReadWrite.OwnedBy"
+            ],
+            "broader_candidate_if_ownership_not_sufficient": [
+              "Application.ReadWrite.All"
+            ],
+            "resolution": "TARGET_OWNERSHIP_AND_SCOPE_REVALIDATION_REQUIRED"
+          },
+          {
+            "action_type": "OAUTH_GRANT_REMOVE",
+            "permissions": [
+              "DelegatedPermissionGrant.ReadWrite.All"
+            ],
+            "resolution": "CONFIRMED_APPLICATION_PERMISSION_REVALIDATION_REQUIRED"
+          },
+          {
+            "action_type": "APPLICATION_CREDENTIAL_REMEDIATE",
+            "permissions": [
+              "Application.ReadWrite.OwnedBy"
+            ],
+            "broader_candidate_if_ownership_not_sufficient": [
+              "Application.ReadWrite.All"
+            ],
+            "resolution": "TARGET_OWNERSHIP_AND_SCOPE_REVALIDATION_REQUIRED"
+          }
+        ]
+      },
+      {
+        "principal_alias": "RESP-DEFENDER-ENDPOINT-001",
+        "provider": "DEFENDER_FOR_ENDPOINT_API",
+        "response_domain": "ENDPOINT_RESPONSE",
+        "resource_audience": "DEFENDER_FOR_ENDPOINT_API",
+        "creation_status": "NOT_CREATED",
+        "credential_status": "NOT_CREATED",
+        "permission_grant_status": "NOT_GRANTED",
+        "directory_role_assignment_status": "NOT_ASSIGNED",
+        "live_authentication_status": "NOT_PERFORMED",
+        "execution_release": "NOT_RELEASED",
+        "action_types": [
+          "DEVICE_ISOLATE",
+          "FILE_QUARANTINE"
+        ],
+        "application_permission_candidates": [
+          {
+            "action_type": "DEVICE_ISOLATE",
+            "permissions": [
+              "Machine.Isolate"
+            ],
+            "resolution": "CONFIRMED_APPLICATION_PERMISSION_REVALIDATION_REQUIRED"
+          },
+          {
+            "action_type": "FILE_QUARANTINE",
+            "permissions": [
+              "Machine.StopAndQuarantine"
+            ],
+            "resolution": "CONFIRMED_APPLICATION_PERMISSION_REVALIDATION_REQUIRED"
+          }
+        ]
+      }
+    ]
+  },
+  "provisioning_gate": {
+    "exact_permission_revalidation_required": true,
+    "exact_role_revalidation_required": true,
+    "tenant_capability_validation_required": true,
+    "license_validation_required": true,
+    "credential_method_review_required": true,
+    "admin_consent_review_required": true,
+    "target_scope_review_required": true,
+    "rollback_design_required": true,
+    "verification_design_required": true,
+    "explicit_human_authorization_required": true,
+    "principal_creation_authorized_by_feature_8d": false,
+    "credential_creation_authorized_by_feature_8d": false,
+    "permission_grant_authorized_by_feature_8d": false,
+    "role_assignment_authorized_by_feature_8d": false,
+    "admin_consent_authorized_by_feature_8d": false,
+    "live_authentication_authorized_by_feature_8d": false,
+    "response_execution_authorized_by_feature_8d": false,
+    "next_gate": "EXPLICIT_RESPONSE_PRINCIPAL_PROVISIONING_AUTHORIZATION"
+  },
+  "safety_boundary": {
+    "app_registrations_created": 0,
+    "service_principals_created": 0,
+    "credentials_created": 0,
+    "graph_authentication": "NOT_PERFORMED",
+    "graph_requests": 0,
+    "defender_api_authentication": "NOT_PERFORMED",
+    "defender_api_requests": 0,
+    "tenant_reads": 0,
+    "tenant_writes": 0,
+    "endpoint_actions": 0,
+    "response_actions": 0,
+    "permission_grants": 0,
+    "role_assignments": 0,
+    "admin_consents": 0,
+    "trial_activations": 0,
+    "current_read_only_app_mutated": false,
+    "live_execution_release": false
+  }
+}
