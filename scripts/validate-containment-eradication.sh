@@ -199,7 +199,8 @@ if (( CURRENT_FEATURE == 8 )); then
     containment-eradication-simulation-foundation-complete|\
 containment-eradication-action-gate-model-complete|\
 containment-eradication-capability-readiness-discovery-complete|\
-containment-eradication-response-principal-design-complete)
+containment-eradication-response-principal-design-complete|\
+containment-eradication-response-principal-provisioning-authorization-gate-complete)
       ;;
     *)
       fail "unexpected project Feature 8 state"

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "feature": 8,
+  "phase": "PROVISIONING_AUTHORIZATION_GATE_COMPLETE",
+  "validation_state": "EXPLICIT_RESPONSE_PRINCIPAL_PROVISIONING_AUTHORIZATION_GATE_COMPLETE",
+  "mode": "LOCAL_AUTHORIZATION_REVIEW_ONLY",
+  "design_binding": {
+    "source": "FEATURE_8D_RESPONSE_PRINCIPAL_DESIGN",
+    "algorithm": "SHA256",
+    "exact_design_hash_required": true,
+    "stale_or_modified_design_request_rejected": true
+  },
+  "gate_input": {
+    "gate_scope": "LOCAL_PROVISIONING_AUTHORIZATION_REVIEW_ONLY",
+    "live_provisioning_requested": false,
+    "principal_count": 3,
+    "unexpected_properties_allowed": false,
+    "raw_tenant_identifiers_allowed": false,
+    "raw_object_identifiers_allowed": false,
+    "credentials_allowed": false,
+    "tokens_allowed": false
+  },
+  "operator_authorization": {
+    "allowed_value": "AUTHORIZED_FOR_SEPARATE_PROVISIONING_EXECUTION_REVIEW",
+    "scope": "SEPARATE_PROVISIONING_EXECUTION_REVIEW_ONLY",
+    "authorizes_app_registration": false,
+    "authorizes_service_principal_creation": false,
+    "authorizes_credential_creation": false,
+    "authorizes_permission_grant": false,
+    "authorizes_role_assignment": false,
+    "authorizes_admin_consent": false,
+    "authorizes_live_authentication": false,
+    "authorizes_response_execution": false
+  },
+  "required_principal_reviews": [
+    "EXACT_PRINCIPAL_CONFIRMED",
+    "EXACT_RESPONSE_DOMAIN_CONFIRMED",
+    "EXACT_PERMISSION_CANDIDATES_REVIEWED",
+    "ROLE_REQUIREMENTS_REVIEWED",
+    "TENANT_CAPABILITY_REVIEWED",
+    "LICENSE_REQUIREMENTS_REVIEWED",
+    "CREDENTIAL_METHOD_REVIEWED",
+    "ADMIN_CONSENT_IMPACT_REVIEWED",
+    "VERIFICATION_PLAN_REVIEWED",
+    "ROLLBACK_PLAN_REVIEWED"
+  ],
+  "decision_model": {
+    "ready_status": "READY_FOR_SEPARATE_PROVISIONING_EXECUTION_REVIEW",
+    "blocked_status": "BLOCKED",
+    "all_principal_reviews_required": true,
+    "ready_status_authorizes_provisioning": false,
+    "ready_status_authorizes_permission_grants": false,
+    "ready_status_authorizes_admin_consent": false,
+    "blocked_fail_closed": true,
+    "provisioning_release_status": "NOT_RELEASED"
+  },
+  "principal_aliases": [
+    "RESP-GRAPH-APPLICATION-001",
+    "RESP-GRAPH-IDENTITY-001",
+    "RESP-DEFENDER-ENDPOINT-001"
+  ],
+  "safety_boundary": {
+    "app_registrations_created": 0,
+    "service_principals_created": 0,
+    "credentials_created": 0,
+    "graph_authentication": "NOT_PERFORMED",
+    "graph_requests": 0,
+    "defender_api_authentication": "NOT_PERFORMED",
+    "defender_api_requests": 0,
+    "tenant_reads": 0,
+    "tenant_writes": 0,
+    "endpoint_actions": 0,
+    "response_actions": 0,
+    "permission_grants": 0,
+    "role_assignments": 0,
+    "admin_consents": 0,
+    "trial_activations": 0,
+    "current_read_only_app_mutated": false,
+    "live_provisioning_available": false,
+    "provisioning_release": false
+  },
+  "determinism": {
+    "timestamps_in_gate_output": false,
+    "design_sha256_in_output": true,
+    "principal_results_sorted_by_alias": true
+  }
+}

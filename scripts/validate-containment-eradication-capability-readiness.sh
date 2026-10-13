@@ -263,7 +263,8 @@ if (( CURRENT_FEATURE == 8 )); then
 
   case "$CURRENT_STATE" in
     containment-eradication-capability-readiness-discovery-complete|\
-containment-eradication-response-principal-design-complete)
+containment-eradication-response-principal-design-complete|\
+containment-eradication-response-principal-provisioning-authorization-gate-complete)
       ;;
     *)
       fail "unexpected Feature 8C/8D project state"
