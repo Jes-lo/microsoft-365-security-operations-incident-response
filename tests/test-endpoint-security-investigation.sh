@@ -462,6 +462,65 @@ REGISTERED_SHA="$(
 
 [[ "$REGISTERED_SHA" == "$SUMMARY_SHA" ]]
 
+ZERO_ALERTS="$TMP_DIR/zero-alerts.json"
+ZERO_INCIDENTS="$TMP_DIR/zero-incidents.json"
+ZERO_SUMMARY="$TMP_DIR/zero-summary.json"
+
+printf '%s\n' '{"value":[]}' > "$ZERO_ALERTS"
+printf '%s\n' '{"value":[]}' > "$ZERO_INCIDENTS"
+
+pwsh \
+  -NoLogo \
+  -NoProfile \
+  -NonInteractive \
+  -File "$ROOT/automation/powershell/Convert-EndpointSecuritySignals.ps1" \
+  -CasePath "$CASE_PATH" \
+  -AlertsPath "$ZERO_ALERTS" \
+  -IncidentsPath "$ZERO_INCIDENTS" \
+  -OutputPath "$ZERO_SUMMARY" \
+  >/dev/null
+
+jq -e . "$ZERO_SUMMARY" >/dev/null
+
+[[ "$(jq -r '.feature' "$ZERO_SUMMARY")" == "6" ]]
+[[ "$(jq -r '.investigation_type' "$ZERO_SUMMARY")" == "ENDPOINT_SECURITY" ]]
+
+for FIELD in \
+  incident_records \
+  alert_records \
+  incident_alias_count \
+  alert_alias_count \
+  device_alias_count \
+  subject_alias_count \
+  evidence_records \
+  device_evidence_records \
+  user_evidence_records \
+  malicious_evidence_records \
+  suspicious_evidence_records \
+  endpoint_associated_alerts
+do
+  [[ "$(
+    jq -r \
+      --arg field "$FIELD" \
+      '.counts[$field]' \
+      "$ZERO_SUMMARY"
+  )" == "0" ]]
+done
+
+[[ "$(jq '.incidents | length' "$ZERO_SUMMARY")" == "0" ]]
+[[ "$(jq '.alerts | length' "$ZERO_SUMMARY")" == "0" ]]
+
+if grep -Eq \
+  '"(INCIDENT|ALERT|DEVICE|SUBJECT)-[0-9]{3}"' \
+  "$ZERO_SUMMARY"
+then
+  echo "FAIL: zero-signal conversion fabricated an alias." >&2
+  exit 1
+fi
+
+printf 'ZERO_SIGNAL_CONVERTER_TEST=PASS\n'
+printf 'ZERO_SIGNAL_ALIAS_FABRICATION=NO\n'
+
 printf 'ENDPOINT_SECURITY_INVESTIGATION_TEST=PASS\n'
 printf 'INCIDENT_ALERT_CORRELATION=PASS\n'
 printf 'DEVICE_ALIAS_CORRELATION=PASS\n'

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "feature": 6,
   "name": "Endpoint Security Incident Investigation",
-  "phase": "FOUNDATION_READY_FOR_LIVE_VALIDATION",
-  "live_validation_state": "NOT_RUN",
+  "phase": "LIVE_VALIDATION_COMPLETE",
+  "live_validation_state": "ENDPOINT_SECURITY_INCIDENT_INVESTIGATION_COMPLETE",
   "investigation_surfaces": [
     {
       "id": "defender-security-alerts-v2",
@@ -80,5 +80,35 @@
     "sha256_fingerprint_required": true,
     "custody_chain_required": true,
     "raw_source_copy_allowed": false
+  },
+  "live_validation": {
+    "status": "PASS",
+    "result": "AVAILABLE_SURFACES_ZERO_SIGNALS_IN_24H",
+    "sanitized_evidence_path": "docs/evidence/ENDPOINT-SECURITY-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md",
+    "sanitized_evidence_sha256": "a09c61e0837440c095f54827b9a3c39ea5e4d1ea5f132f59620f495d07999987",
+    "authentication": "DELEGATED_READ_ONLY",
+    "lookback_hours": 24,
+    "maximum_records_per_surface": 25,
+    "graph_get_request_count": 2,
+    "successful_get_count": 2,
+    "pagination_used": false,
+    "alerts_v2_records_observed": 0,
+    "incidents_records_observed": 0,
+    "missing_scope_count": 0,
+    "unexpected_scope_count": 0,
+    "write_capable_scope_count": 0,
+    "tenant_writes": 0,
+    "endpoint_writes": 0,
+    "endpoint_actions": 0,
+    "alert_mutations": 0,
+    "incident_mutations": 0,
+    "new_permission_grants": 0,
+    "role_assignments": 0,
+    "trial_activations": 0,
+    "raw_graph_payloads_retained": false,
+    "zero_signal_converter_path_validated": true,
+    "synthetic_signal_fabrication": false,
+    "feature_3_sha256_validated": true,
+    "feature_3_custody_validated": true
   }
 }

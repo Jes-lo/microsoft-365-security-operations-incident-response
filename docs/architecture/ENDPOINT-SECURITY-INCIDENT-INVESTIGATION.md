@@ -80,3 +80,25 @@ Feature 6A performs no Microsoft Graph authentication or requests.
 A later live phase may use bounded GET requests to the already authorized alert and incident surfaces.
 
 No write-capable permission, endpoint action, new role, paid license, or trial may be introduced automatically.
+
+## Live validation confirmation
+
+Feature 6 was subsequently validated against the live tenant through the dedicated Microsoft Graph application using delegated read-only authentication.
+
+The live gate used only the existing `SecurityAlert.Read.All` and `SecurityIncident.Read.All` permissions and confirmed that no unexpected or write-capable scopes were present.
+
+Exactly two bounded GET requests were performed: one against `/security/alerts_v2` and one against `/security/incidents`.
+
+The query boundary used a 24-hour lookback, a maximum of 25 records per surface, and no pagination.
+
+Both surfaces returned successful responses with zero matching records during the validation window.
+
+That zero-result condition is treated as an available empty dataset rather than an unavailable capability, and no live telemetry was fabricated.
+
+The zero-signal converter control path was validated separately using derived empty envelopes representing the already observed zero-record result. It produced no INCIDENT, ALERT, DEVICE, or SUBJECT aliases and created no synthetic security signal.
+
+A sanitized live-observation summary then passed the Feature 3 SHA-256 and custody workflow. Raw Graph payloads and tenant- or endpoint-specific identifiers were not retained.
+
+Feature 6 performed zero tenant writes, zero endpoint writes, zero endpoint response actions, zero alert or incident mutations, zero role assignments, and zero trial activations.
+
+Direct endpoint inventory and endpoint response capabilities remain outside the validated Feature 6 scope.
