@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "feature": 9,
+  "phase": "RECOVERY_VALIDATION_SCENARIOS_CLOSURE_GATE_COMPLETE",
+  "validation_state": "RECOVERY_VALIDATION_SCENARIOS_CLOSURE_GATE_COMPLETE",
+  "mode": "LOCAL_CLOSURE_REVIEW_ONLY",
+  "plan_binding": {
+    "source": "FEATURE_9A_RECOVERY_VALIDATION_PLAN",
+    "algorithm": "SHA256",
+    "exact_plan_hash_required": true,
+    "stale_or_modified_plan_rejected": true
+  },
+  "gate_input": {
+    "gate_scope": "LOCAL_RECOVERY_CLOSURE_REVIEW_ONLY",
+    "live_recovery_requested": false,
+    "incident_closure_requested": false,
+    "unexpected_properties_allowed": false,
+    "raw_tenant_identifiers_allowed": false,
+    "raw_object_identifiers_allowed": false,
+    "credentials_allowed": false,
+    "tokens_allowed": false
+  },
+  "operator_validation": {
+    "allowed_values": [
+      "VALIDATED_FOR_CLOSURE_REVIEW",
+      "NOT_VALIDATED"
+    ],
+    "ready_value": "VALIDATED_FOR_CLOSURE_REVIEW",
+    "authorizes_incident_closure": false,
+    "authorizes_recovery_execution": false
+  },
+  "scenario_model": {
+    "verification_statuses": [
+      "PASS",
+      "FAIL",
+      "PENDING"
+    ],
+    "evidence_statuses": [
+      "SANITIZED_EVIDENCE_RECORDED",
+      "NOT_RECORDED"
+    ],
+    "pass_requires_sanitized_evidence": true,
+    "fail_blocks_closure_review": true,
+    "pending_blocks_closure_review": true,
+    "missing_check_rejected": true,
+    "duplicate_check_rejected": true,
+    "unknown_check_rejected": true
+  },
+  "decision_model": {
+    "ready_status": "READY_FOR_CLOSURE_REVIEW",
+    "blocked_status": "BLOCKED",
+    "all_recovery_items_must_validate": true,
+    "all_verification_checks_must_pass": true,
+    "all_passed_checks_require_sanitized_evidence": true,
+    "explicit_human_validation_required": true,
+    "ready_status_authorizes_incident_closure": false,
+    "automatic_incident_closure": false,
+    "incident_closure_release": "NOT_RELEASED",
+    "recovery_release": "NOT_RELEASED"
+  },
+  "safety_boundary": {
+    "graph_authentication": "NOT_PERFORMED",
+    "graph_requests": 0,
+    "defender_api_authentication": "NOT_PERFORMED",
+    "defender_api_requests": 0,
+    "tenant_reads": 0,
+    "tenant_writes": 0,
+    "endpoint_actions": 0,
+    "response_actions": 0,
+    "recovery_actions": 0,
+    "credential_changes": 0,
+    "permission_grants": 0,
+    "role_assignments": 0,
+    "admin_consents": 0,
+    "incident_closure_requests": 0,
+    "incident_closures": 0,
+    "live_recovery_release": false,
+    "incident_closure_release": false
+  },
+  "determinism": {
+    "timestamps_in_output": false,
+    "recovery_items_sorted_by_sequence": true,
+    "verification_results_sorted_by_check_name": true,
+    "free_form_evidence_allowed": false
+  }
+}
