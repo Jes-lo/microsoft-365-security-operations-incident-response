@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 6 — Endpoint Security Incident Investigation — complete. Bounded live validation confirmed both previously authorized Microsoft Graph unified security surfaces using only the existing read-only SecurityAlert.Read.All and SecurityIncident.Read.All permissions. The 24-hour validation window returned zero alerts and zero incidents; this is recorded as an available zero-signal observation rather than fabricated telemetry. The zero-signal converter path and Feature 3 SHA-256/custody workflow were validated without retaining raw Graph payloads, tenant or endpoint identifiers, network or file artifacts, titles, or descriptions. No tenant writes, endpoint writes, response actions, new permissions, role assignments, or trial activations occurred. The project is ready for Feature 7 — Cross-Signal Correlation.
+Feature 7 — Cross-Signal Correlation — foundation complete. The project now combines sanitized identity, enterprise-application/OAuth, and endpoint-security investigation summaries into a deterministic incident timeline. Source aliases remain domain scoped: equal alias text across domains never creates an entity join. Cross-domain subject relationships require explicit sanitized SAME_SUBJECT bindings, while unbound events remain available for temporal correlation. The Feature 7A foundation is local-only, uses no Microsoft Graph requests, performs no tenant or endpoint actions, and supports Feature 3 SHA-256/custody registration.
 
 The repository is initially private while implementation and validation are in progress.
 

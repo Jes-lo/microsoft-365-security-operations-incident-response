@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "feature": 7,
+  "name": "Cross-Signal Correlation",
+  "phase": "FOUNDATION_COMPLETE",
+  "validation_state": "CROSS_SIGNAL_CORRELATION_FOUNDATION_COMPLETE",
+  "inputs": [
+    {
+      "id": "identity-security-summary",
+      "source_feature": 4,
+      "required": true,
+      "sanitized_only": true
+    },
+    {
+      "id": "enterprise-application-oauth-summary",
+      "source_feature": 5,
+      "required": true,
+      "sanitized_only": true
+    },
+    {
+      "id": "endpoint-security-summary",
+      "source_feature": 6,
+      "required": true,
+      "sanitized_only": true
+    },
+    {
+      "id": "explicit-cross-domain-subject-bindings",
+      "required": false,
+      "sanitized_only": true
+    }
+  ],
+  "correlation_model": {
+    "deterministic_temporal_timeline": true,
+    "unbound_events_preserved": true,
+    "source_local_aliases_are_domain_scoped": true,
+    "cross_domain_alias_string_equality_join_allowed": false,
+    "explicit_sanitized_binding_required_for_entity_join": true,
+    "supported_explicit_relationships": [
+      "SAME_SUBJECT"
+    ],
+    "binding_alias_format": "CORR-SUBJECT-NNN",
+    "binding_member_alias_format": "SUBJECT-NNN",
+    "minimum_binding_domains": 2,
+    "phantom_binding_members_allowed": false,
+    "duplicate_member_assignment_allowed": false
+  },
+  "timeline": {
+    "timestamp_normalization": "UTC",
+    "primary_sort": "timestamp_utc",
+    "secondary_sort": "domain_priority",
+    "tertiary_sort": "event_type",
+    "final_sort": "source_index",
+    "sequence_starts_at": 1
+  },
+  "privacy_boundary": {
+    "raw_tenant_identifiers_retained": false,
+    "raw_user_identifiers_retained": false,
+    "raw_application_identifiers_retained": false,
+    "raw_device_identifiers_retained": false,
+    "raw_network_indicators_retained": false,
+    "raw_file_artifacts_retained": false,
+    "raw_graph_payloads_retained": false,
+    "raw_cross_domain_correlation_ids_retained": false,
+    "repository_safe_aliases_only": true,
+    "identifier_like_category_values_redacted": true
+  },
+  "safety_boundary": {
+    "graph_authentication_required": false,
+    "graph_requests": 0,
+    "tenant_reads": 0,
+    "tenant_writes": 0,
+    "endpoint_actions": 0,
+    "response_actions": 0,
+    "new_permission_grants": 0,
+    "role_assignments": 0,
+    "trial_activations": 0
+  },
+  "evidence_boundary": {
+    "feature_3_registration_supported": true,
+    "raw_evidence_copy_required": false,
+    "sha256_supported": true,
+    "custody_hash_chain_supported": true
+  }
+}
