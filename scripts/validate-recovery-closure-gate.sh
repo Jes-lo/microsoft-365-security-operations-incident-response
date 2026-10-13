@@ -173,25 +173,30 @@ jq -e '
   "$F9A" \
   >/dev/null \
   || fail "Feature 9A foundation dependency invalid"
-
-[[ "$(
+CURRENT_FEATURE="$(
   jq -r '.current_feature' "$PROJECT_SCOPE"
-)" == "9" ]] \
-  || fail "project current feature must remain 9"
+)"
+
+case "$CURRENT_FEATURE" in
+  9|10)
+    ;;
+  *)
+    fail "unexpected project current feature for Feature 9 history"
+    ;;
+esac
 
 CURRENT_STATE="$(
   jq -r '.current_state' "$PROJECT_SCOPE"
 )"
-
 case "$CURRENT_STATE" in
   recovery-validation-scenarios-closure-gate-complete|\
-incident-closure-authorization-gate-complete)
+incident-closure-authorization-gate-complete|\
+postmortem-local-case-closure-foundation-complete)
     ;;
   *)
-    fail "unexpected Feature 9B/9C project state"
+    fail "unexpected Feature 9B/10A project state"
     ;;
 esac
-
 grep -Fq \
   'Every closure-gate request must contain the SHA-256 digest' \
   "$ARCHITECTURE" \
