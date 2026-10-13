@@ -41,6 +41,12 @@ required_files=(
   "docs/evidence/ENDPOINT-SECURITY-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "scripts/validate-endpoint-security-investigation.sh"
   "tests/test-endpoint-security-investigation.sh"
+  "configs/cross-signal-correlation-contract.json"
+  "automation/powershell/Convert-CrossSignalCorrelation.ps1"
+  "docs/architecture/CROSS-SIGNAL-CORRELATION.md"
+  "docs/decisions/ADR-009-privacy-preserving-cross-signal-correlation.md"
+  "scripts/validate-cross-signal-correlation.sh"
+  "tests/test-cross-signal-correlation.sh"
   "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "automation/powershell/Convert-EnterpriseAppOAuthSignals.ps1"
   "docs/architecture/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION.md"
@@ -244,5 +250,8 @@ pass "file-size guardrail valid"
 
 ./scripts/validate-endpoint-security-investigation.sh
 ./tests/test-endpoint-security-investigation.sh
+
+./scripts/validate-cross-signal-correlation.sh
+./tests/test-cross-signal-correlation.sh
 
 printf 'REPOSITORY_VALIDATION=PASS\n'
