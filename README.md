@@ -1,17 +1,5 @@
 # Microsoft 365 Security Operations & Incident Response
 
-A security operations and incident response portfolio project for Microsoft 365, designed as an independent controlled lab implementation.
-
-The project focuses on detecting, investigating, correlating, containing, eradicating, recovering from, and documenting security incidents while preserving least privilege, evidence privacy, tenant safety, and reproducibility.
-
-## Project status
-
-Feature 8 — Containment & Eradication — explicit response-principal provisioning authorization gate complete. Feature 8A provides simulation-only response plans, Feature 8B provides the local action review gate, Feature 8C maps documented response capabilities, Feature 8D defines three isolated future response principals, and Feature 8E adds a deterministic SHA-256-bound local authorization review gate before any provisioning implementation. A READY result does not authorize provisioning. No app registration, service principal, credential, permission grant, role assignment, admin consent, authentication session, tenant mutation, response action, or provisioning release is created by Feature 8E.
-Feature 9 — Recovery & Validation — explicit incident-closure authorization gate complete. Feature 9A defines deterministic recovery strategies, Feature 9B validates PASS/FAIL/PENDING recovery scenarios and produces READY_FOR_CLOSURE_REVIEW without closing the incident, and Feature 9C adds a separate SHA-256-bound human authorization gate. A complete 9C review can only reach READY_FOR_SEPARATE_INCIDENT_CLOSURE_EXECUTION_REVIEW; it does not authorize tenant writes or incident closure, and closure execution remains NOT_RELEASED.
-Feature 10 — Postmortem & Closure — final project closure and publication-readiness audit complete. The modeled incident-response lifecycle is implementation-complete, historical validation remains passing, local postmortem/case closure is complete, and automated repository publication-readiness checks pass. The repository remains private; READY_FOR_MANUAL_PUBLICATION_REVIEW does not authorize publication or a visibility change, and PUBLICATION_RELEASE remains NOT_RELEASED.
-
-The repository is initially private while implementation and validation are in progress.
-
 ## Core technologies
 
 - Microsoft 365
@@ -25,6 +13,20 @@ The repository is initially private while implementation and validation are in p
 - Git
 
 Additional Microsoft security capabilities are used only when they are available in the existing lab environment without requiring paid upgrades or trial activation.
+
+A security operations and incident response portfolio project for Microsoft 365, designed as an independent controlled lab implementation.
+
+The project focuses on detecting, investigating, correlating, containing, eradicating, recovering from, and documenting security incidents while preserving least privilege, evidence privacy, tenant safety, and reproducibility.
+
+## Project status
+
+**Status: Complete — v1.0.0 portfolio release.**
+
+The complete modeled incident-response lifecycle (Features 1–10) is implemented and validated. Bounded live Microsoft 365 investigation used delegated read-only access only. Containment, recovery, tenant-write, credential-change, response-principal provisioning, and external incident-closure execution remained safety-gated and were not performed against the tenant.
+
+The repository contains sanitized technical evidence and reproducible validation artifacts while excluding secrets, raw tenant evidence, tenant-specific identifiers, authentication material, and personal identifiers.
+
+Public visibility is intended for portfolio, professional evaluation, educational review, and demonstration. Public availability does not grant permission to copy, modify, redistribute, sublicense, commercialize, or create derivative works from the original project material. See `LICENSE`, `NOTICE.md`, `THIRD_PARTY_NOTICES.md`, and `TRADEMARKS.md`.
 
 ## Security operations model
 
@@ -128,6 +130,12 @@ Controlled restoration, access verification, residual-risk checks, and recovery 
 ### Feature 10 — Postmortem & Project Closure
 
 Incident metrics, postmortems, adversarial validation, final architecture documentation, release verification, publication-readiness review, and a separate manual publication decision.
+
+## License and reuse
+
+Original project material is Copyright (c) 2026 Jesus Lopez and All Rights Reserved. No license is granted to copy, reproduce, modify, redistribute, sublicense, commercialize, publish derivative works from, or otherwise reuse the original project material except where required by the GitHub Terms of Service, applicable law, or explicit written permission from the copyright holder.
+
+Third-party components, product names, and technologies remain subject to their respective licenses, terms, trademarks, and ownership rights. See `LICENSE`, `NOTICE.md`, `THIRD_PARTY_NOTICES.md`, and `TRADEMARKS.md`.
 
 ## Independence
 
