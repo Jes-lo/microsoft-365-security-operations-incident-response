@@ -191,10 +191,18 @@ jq -e '
 )" == "9" ]] \
   || fail "project current feature must be 9"
 
-[[ "$(
+CURRENT_STATE="$(
   jq -r '.current_state' "$PROJECT_SCOPE"
-)" == "recovery-validation-foundation-complete" ]] \
-  || fail "unexpected Feature 9A project state"
+)"
+
+case "$CURRENT_STATE" in
+  recovery-validation-foundation-complete|\
+recovery-validation-scenarios-closure-gate-complete)
+    ;;
+  *)
+    fail "unexpected Feature 9A/9B project state"
+    ;;
+esac
 
 grep -Fq \
   'Recovery does not mean blindly undoing' \
