@@ -204,7 +204,8 @@ case "$CURRENT_STATE" in
   recovery-validation-foundation-complete|\
 recovery-validation-scenarios-closure-gate-complete|\
 incident-closure-authorization-gate-complete|\
-postmortem-local-case-closure-foundation-complete)
+postmortem-local-case-closure-foundation-complete|\
+final-project-closure-publication-readiness-audit-complete)
     ;;
   *)
     fail "unexpected Feature 9A/10A project state"

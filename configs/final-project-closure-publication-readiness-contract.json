@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "feature": 10,
+  "phase": "FINAL_PROJECT_CLOSURE_PUBLICATION_READINESS_AUDIT_COMPLETE",
+  "validation_state": "FINAL_PROJECT_CLOSURE_PUBLICATION_READINESS_AUDIT_COMPLETE",
+  "mode": "LOCAL_PUBLICATION_READINESS_AUDIT_ONLY",
+  "project_closure": {
+    "implementation_status": "IMPLEMENTATION_COMPLETE",
+    "modeled_incident_response_lifecycle_complete": true,
+    "final_feature": 10,
+    "external_incident_closure_executed": false,
+    "external_incident_closure_release": "NOT_RELEASED"
+  },
+  "publication_boundary": {
+    "audit_status": "READY_FOR_MANUAL_PUBLICATION_REVIEW",
+    "publication_release": "NOT_RELEASED",
+    "repository_visibility_change_status": "NOT_PERFORMED",
+    "repository_visibility_change_authorized": false,
+    "automatic_publication_allowed": false,
+    "manual_human_review_required": true,
+    "required_visibility_during_audit": "PRIVATE"
+  },
+  "required_governance_files": [
+    "README.md",
+    "COPYRIGHT.md",
+    "LICENSE",
+    "NOTICE.md",
+    "SECURITY.md",
+    "THIRD_PARTY_NOTICES.md",
+    "TRADEMARKS.md"
+  ],
+  "publication_audit_domains": [
+    "REPOSITORY_INTEGRITY",
+    "SECURITY_VALIDATION",
+    "PRIVACY_AND_SECRET_HYGIENE",
+    "DOCUMENTATION_COMPLETENESS",
+    "GOVERNANCE_AND_OWNERSHIP",
+    "THIRD_PARTY_ATTRIBUTION",
+    "TRADEMARK_POSITIONING",
+    "PORTFOLIO_CLAIM_ACCURACY",
+    "LIVE_ACTION_BOUNDARIES",
+    "MANUAL_PUBLICATION_DECISION"
+  ],
+  "automated_requirements": {
+    "repository_validation_required": true,
+    "adversarial_validation_required": true,
+    "tracked_local_private_directory_allowed": false,
+    "tracked_raw_tenant_evidence_allowed": false,
+    "tracked_credentials_allowed": false,
+    "tracked_tokens_allowed": false,
+    "tracked_private_keys_allowed": false,
+    "tenant_write_claim_allowed": false,
+    "live_response_execution_claim_allowed": false,
+    "external_incident_closure_claim_allowed": false
+  },
+  "manual_review_requirements": {
+    "third_party_attribution_review": "MANUAL_REQUIRED",
+    "trademark_wording_review": "MANUAL_REQUIRED",
+    "portfolio_claim_review": "MANUAL_REQUIRED",
+    "sensitive_evidence_review": "MANUAL_REQUIRED",
+    "repository_visibility_change_review": "MANUAL_REQUIRED"
+  },
+  "safety_boundary": {
+    "graph_authentication": "NOT_PERFORMED",
+    "graph_requests": 0,
+    "defender_api_authentication": "NOT_PERFORMED",
+    "defender_api_requests": 0,
+    "tenant_reads": 0,
+    "tenant_writes": 0,
+    "endpoint_actions": 0,
+    "response_actions": 0,
+    "recovery_actions": 0,
+    "credential_changes": 0,
+    "permission_grants": 0,
+    "role_assignments": 0,
+    "admin_consents": 0,
+    "external_incident_closure_requests": 0,
+    "external_incident_closures": 0,
+    "repository_visibility_changes": 0,
+    "publication_actions": 0
+  }
+}

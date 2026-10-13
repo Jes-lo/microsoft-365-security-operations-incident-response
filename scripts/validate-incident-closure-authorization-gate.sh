@@ -153,7 +153,8 @@ CURRENT_STATE="$(
 
 case "$CURRENT_STATE" in
   incident-closure-authorization-gate-complete|\
-postmortem-local-case-closure-foundation-complete)
+postmortem-local-case-closure-foundation-complete|\
+final-project-closure-publication-readiness-audit-complete)
     ;;
   *)
     fail "unexpected Feature 9C/10A project state"
