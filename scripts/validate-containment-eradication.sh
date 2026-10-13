@@ -180,13 +180,30 @@ jq -e '
   >/dev/null \
   || fail "Feature 8 privacy boundary invalid"
 
-[[ "$(jq -r '.current_feature' "$PROJECT_SCOPE")" == "8" ]] \
-  || fail "project current feature must be 8"
+CURRENT_FEATURE="$(
+  jq -r '.current_feature' "$PROJECT_SCOPE"
+)"
 
-[[ "$(
-  jq -r '.current_state' "$PROJECT_SCOPE"
-)" == "containment-eradication-simulation-foundation-complete" ]] \
-  || fail "unexpected project Feature 8 state"
+[[ "$CURRENT_FEATURE" =~ ^[0-9]+$ ]] \
+  || fail "project current feature must be numeric"
+
+(( CURRENT_FEATURE >= 8 )) \
+  || fail "project current feature must not regress below 8"
+
+if (( CURRENT_FEATURE == 8 )); then
+  CURRENT_STATE="$(
+    jq -r '.current_state' "$PROJECT_SCOPE"
+  )"
+
+  case "$CURRENT_STATE" in
+    containment-eradication-simulation-foundation-complete|\
+containment-eradication-action-gate-model-complete)
+      ;;
+    *)
+      fail "unexpected project Feature 8 state"
+      ;;
+  esac
+fi
 
 for PARAMETER in \
   CasePath \

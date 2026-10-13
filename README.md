@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 8 — Containment & Eradication — simulation foundation complete. The project now models deterministic containment and eradication plans for sanitized SUBJECT, APP, DEVICE, and FILE aliases while keeping every response action in NOT_EXECUTED state. The planner is local-only, accepts SIMULATION_ONLY requests, rejects live authorization, uses controlled reason categories, defers exact write-capability resolution to a future explicit action gate, and integrates simulated plans with the Feature 3 SHA-256/custody workflow. No Microsoft Graph authentication or requests, tenant writes, endpoint actions, response actions, new permissions, role assignments, or trial activations are part of Feature 8A.
+Feature 8 — Containment & Eradication — explicit action-gate model complete. Feature 8A provides deterministic simulation-only response plans; Feature 8B now adds a separate local review boundary that evaluates exact-action, target-class, impact, reversibility, prerequisites, symbolic capability, verification, rollback, evidence handling, and narrowly scoped operator authorization. A fully satisfied gate can only become READY_FOR_SEPARATE_LIVE_GATE_REVIEW. It never releases execution, never resolves concrete write-capable permissions, and performs no Microsoft Graph authentication or requests, tenant writes, endpoint actions, response actions, permission grants, role assignments, or trial activations.
 
 The repository is initially private while implementation and validation are in progress.
 

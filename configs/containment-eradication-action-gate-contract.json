@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "feature": 8,
+  "phase": "ACTION_GATE_MODEL_COMPLETE",
+  "validation_state": "EXPLICIT_ACTION_GATE_MODEL_COMPLETE",
+  "mode": "LOCAL_MODEL_REVIEW_ONLY",
+  "purpose": "Evaluate whether sanitized simulated response actions have satisfied the local review prerequisites required before a separate live-execution gate may even be considered.",
+  "input_contract": {
+    "plan_source": "FEATURE_8A_SIMULATION_PLAN",
+    "plan_execution_mode_required": "SIMULATION_ONLY",
+    "plan_live_execution_authorized_required": false,
+    "gate_scope": "LOCAL_MODEL_REVIEW_ONLY",
+    "live_execution_requested": false,
+    "maximum_actions": 50,
+    "unexpected_properties_allowed": false,
+    "free_form_text_allowed": false,
+    "raw_identifiers_allowed": false
+  },
+  "operator_authorization": {
+    "allowed_value": "AUTHORIZED_FOR_SEPARATE_LIVE_GATE_REVIEW",
+    "authorization_scope": "SEPARATE_LIVE_GATE_REVIEW_ONLY",
+    "authorizes_live_execution": false,
+    "authorizes_permission_grant": false,
+    "authorizes_role_assignment": false,
+    "authorizes_endpoint_action": false,
+    "authorizes_tenant_write": false
+  },
+  "permission_boundary": {
+    "symbolic_capability_confirmation_allowed": true,
+    "concrete_permission_resolution": "DEFERRED_TO_SEPARATE_LIVE_GATE",
+    "concrete_write_scope_allowed": false,
+    "new_permission_grant_allowed": false,
+    "role_assignment_allowed": false,
+    "trial_activation_allowed": false
+  },
+  "local_review_requirements": [
+    "EXACT_ACTION_CONFIRMED",
+    "TARGET_CLASS_CONFIRMED",
+    "IMPACT_ACKNOWLEDGED",
+    "REVERSIBILITY_ACKNOWLEDGED",
+    "PREREQUISITES_CONFIRMED",
+    "SYMBOLIC_CAPABILITY_CONFIRMED",
+    "VERIFICATION_PLAN_CONFIRMED",
+    "ROLLBACK_PLAN_CONFIRMED",
+    "EVIDENCE_HANDLING_CONFIRMED",
+    "EXPLICIT_OPERATOR_REVIEW_AUTHORIZATION"
+  ],
+  "decision_model": {
+    "ready_status": "READY_FOR_SEPARATE_LIVE_GATE_REVIEW",
+    "blocked_status": "BLOCKED",
+    "all_local_requirements_required_for_ready": true,
+    "ready_status_authorizes_execution": false,
+    "blocked_status_fail_closed": true,
+    "execution_release_status": "NOT_RELEASED"
+  },
+  "safety_boundary": {
+    "graph_authentication_required": false,
+    "graph_requests": 0,
+    "tenant_reads": 0,
+    "tenant_writes": 0,
+    "endpoint_actions": 0,
+    "response_actions": 0,
+    "new_permission_grants": 0,
+    "role_assignments": 0,
+    "trial_activations": 0,
+    "live_execution_available": false,
+    "live_execution_release": false,
+    "destructive_action_default": "DENY"
+  },
+  "privacy_boundary": {
+    "repository_safe_plan_required": true,
+    "controlled_aliases_only": true,
+    "raw_tenant_identifiers_allowed": false,
+    "raw_user_identifiers_allowed": false,
+    "raw_application_identifiers_allowed": false,
+    "raw_device_identifiers_allowed": false,
+    "raw_file_identifiers_allowed": false,
+    "raw_network_indicators_allowed": false,
+    "raw_credentials_allowed": false,
+    "raw_tokens_allowed": false,
+    "free_form_authorization_text_allowed": false
+  },
+  "output_contract": {
+    "deterministic": true,
+    "generation_timestamp_included": false,
+    "execution_status": "NOT_EXECUTED",
+    "live_execution_release": false,
+    "concrete_permission_resolution": "DEFERRED_TO_SEPARATE_LIVE_GATE",
+    "repository_safe": true
+  },
+  "evidence_boundary": {
+    "feature_3_registration_supported": true,
+    "sha256_supported": true,
+    "custody_hash_chain_supported": true,
+    "raw_evidence_copy_required": false
+  }
+}
