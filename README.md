@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 8 — Containment & Eradication — explicit action-gate model complete. Feature 8A provides deterministic simulation-only response plans; Feature 8B now adds a separate local review boundary that evaluates exact-action, target-class, impact, reversibility, prerequisites, symbolic capability, verification, rollback, evidence handling, and narrowly scoped operator authorization. A fully satisfied gate can only become READY_FOR_SEPARATE_LIVE_GATE_REVIEW. It never releases execution, never resolves concrete write-capable permissions, and performs no Microsoft Graph authentication or requests, tenant writes, endpoint actions, response actions, permission grants, role assignments, or trial activations.
+Feature 8 — Containment & Eradication — capability and permission readiness discovery complete. Feature 8A provides deterministic simulation-only response plans, Feature 8B provides the explicit local action-review gate, and Feature 8C maps all eight modeled response actions to their documented Microsoft Graph or Microsoft Defender for Endpoint capability families and least-privilege permission requirements. The existing investigation principal remains read-only and must not be upgraded for response actions; any future live-response design requires a separately governed response principal. Feature 8C performs no Graph or Defender authentication, no tenant reads or writes, no endpoint or response actions, no permission grants, no role assignments, and no execution release.
 
 The repository is initially private while implementation and validation are in progress.
 

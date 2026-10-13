@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "feature": 8,
+  "phase": "CAPABILITY_PERMISSION_READINESS_DISCOVERY_COMPLETE",
+  "validation_state": "CAPABILITY_PERMISSION_READINESS_DISCOVERY_COMPLETE",
+  "mode": "DOCUMENTATION_AND_REPOSITORY_DISCOVERY_ONLY",
+  "source_review": {
+    "authority": "MICROSOFT_LEARN",
+    "reviewed_date": "2026-10-13",
+    "live_tenant_validation_performed": false,
+    "live_permission_enumeration_performed": false
+  },
+  "declared_current_read_only_boundary": {
+    "source": "PROJECT_DOCUMENTATION",
+    "live_tenant_verified_this_feature": false,
+    "delegated_scopes": [
+      "AuditLog.Read.All",
+      "IdentityRiskEvent.Read.All",
+      "IdentityRiskyUser.Read.All",
+      "SecurityAlert.Read.All",
+      "SecurityIncident.Read.All"
+    ],
+    "write_or_action_permissions_present": false,
+    "current_app_mutation": "PROHIBITED"
+  },
+  "future_identity_boundary": {
+    "response_principal_strategy": "SEPARATE_RESPONSE_APP_REQUIRED",
+    "reuse_current_read_only_app_for_write_actions": false,
+    "permission_grant_authorized_by_feature_8c": false,
+    "role_assignment_authorized_by_feature_8c": false,
+    "live_authentication_authorized_by_feature_8c": false,
+    "live_execution_authorized_by_feature_8c": false
+  },
+  "capabilities": [
+    {
+      "action_type": "SUBJECT_REVOKE_SESSIONS",
+      "symbolic_capability": "IDENTITY_SESSION_CONTROL_WRITE",
+      "provider": "MICROSOFT_GRAPH",
+      "operation_family": "USER_REVOKE_SIGN_IN_SESSIONS",
+      "least_privileged_delegated_permissions": [
+        "User.RevokeSessions.All"
+      ],
+      "additional_prerequisites": [
+        "ADMIN_CONSENT_REVIEW_REQUIRED_BEFORE_LIVE_GATE"
+      ],
+      "documentation_status": "CONFIRMED",
+      "current_declared_permission_status": "ABSENT_FROM_DECLARED_READ_ONLY_BOUNDARY",
+      "permission_grant_status": "NOT_GRANTED_BY_FEATURE_8C",
+      "live_validation_status": "NOT_PERFORMED",
+      "live_execution_readiness": "BLOCKED"
+    },
+    {
+      "action_type": "SUBJECT_BLOCK_SIGN_IN",
+      "symbolic_capability": "IDENTITY_ACCOUNT_CONTROL_WRITE",
+      "provider": "MICROSOFT_GRAPH",
+      "operation_family": "USER_ACCOUNT_ENABLED_UPDATE",
+      "least_privileged_delegated_permissions": [
+        "User.EnableDisableAccount.All",
+        "User.Read.All"
+      ],
+      "additional_prerequisites": [
+        "TARGET_PRIVILEGE_AND_SUPPORTED_ENTRA_ROLE_REVIEW_REQUIRED"
+      ],
+      "documentation_status": "CONFIRMED",
+      "current_declared_permission_status": "ABSENT_FROM_DECLARED_READ_ONLY_BOUNDARY",
+      "permission_grant_status": "NOT_GRANTED_BY_FEATURE_8C",
+      "live_validation_status": "NOT_PERFORMED",
+      "live_execution_readiness": "BLOCKED"
+    },
+    {
+      "action_type": "APPLICATION_DISABLE_ACCESS",
+      "symbolic_capability": "APPLICATION_CONTROL_WRITE",
+      "provider": "MICROSOFT_GRAPH",
+      "operation_family": "SERVICE_PRINCIPAL_ACCOUNT_ENABLED_UPDATE",
+      "least_privileged_delegated_permissions": [
+        "Application.ReadWrite.All"
+      ],
+      "additional_prerequisites": [
+        "SUPPORTED_ENTRA_APPLICATION_ADMIN_CONTEXT_REVIEW_REQUIRED",
+        "RECHECK_OPERATION_SPECIFIC_DOCUMENTATION_BEFORE_LIVE_GATE"
+      ],
+      "documentation_status": "CONFIRMED_WITH_PRE_LIVE_RECHECK_REQUIRED",
+      "current_declared_permission_status": "ABSENT_FROM_DECLARED_READ_ONLY_BOUNDARY",
+      "permission_grant_status": "NOT_GRANTED_BY_FEATURE_8C",
+      "live_validation_status": "NOT_PERFORMED",
+      "live_execution_readiness": "BLOCKED"
+    },
+    {
+      "action_type": "DEVICE_ISOLATE",
+      "symbolic_capability": "ENDPOINT_RESPONSE_CONTROL",
+      "provider": "DEFENDER_FOR_ENDPOINT_API",
+      "operation_family": "MACHINE_ISOLATE",
+      "least_privileged_delegated_permissions": [
+        "Machine.Isolate"
+      ],
+      "additional_prerequisites": [
+        "ACTIVE_REMEDIATION_ACTIONS_ROLE_PERMISSION_REQUIRED",
+        "DEVICE_GROUP_ACCESS_REQUIRED",
+        "SEPARATE_DEFENDER_API_PERMISSION_SURFACE_REQUIRED"
+      ],
+      "documentation_status": "CONFIRMED",
+      "current_declared_permission_status": "ABSENT_FROM_DECLARED_READ_ONLY_BOUNDARY",
+      "permission_grant_status": "NOT_GRANTED_BY_FEATURE_8C",
+      "live_validation_status": "NOT_PERFORMED",
+      "live_execution_readiness": "BLOCKED"
+    },
+    {
+      "action_type": "OAUTH_GRANT_REMOVE",
+      "symbolic_capability": "OAUTH_PERMISSION_CONTROL_WRITE",
+      "provider": "MICROSOFT_GRAPH",
+      "operation_family": "OAUTH2_PERMISSION_GRANT_DELETE",
+      "least_privileged_delegated_permissions": [
+        "DelegatedPermissionGrant.ReadWrite.All"
+      ],
+      "additional_prerequisites": [
+        "SUPPORTED_ENTRA_ROLE_REVIEW_REQUIRED"
+      ],
+      "documentation_status": "CONFIRMED",
+      "current_declared_permission_status": "ABSENT_FROM_DECLARED_READ_ONLY_BOUNDARY",
+      "permission_grant_status": "NOT_GRANTED_BY_FEATURE_8C",
+      "live_validation_status": "NOT_PERFORMED",
+      "live_execution_readiness": "BLOCKED"
+    },
+    {
+      "action_type": "APPLICATION_CREDENTIAL_REMEDIATE",
+      "symbolic_capability": "APPLICATION_CREDENTIAL_CONTROL_WRITE",
+      "provider": "MICROSOFT_GRAPH",
+      "operation_family": "APPLICATION_PASSWORD_CREDENTIAL_ADD_REMOVE",
+      "least_privileged_delegated_permissions": [
+        "Application.ReadWrite.All"
+      ],
+      "additional_prerequisites": [
+        "APPLICATION_OWNERSHIP_OR_SUPPORTED_ENTRA_APPLICATION_ADMIN_ROLE_REVIEW_REQUIRED"
+      ],
+      "documentation_status": "CONFIRMED",
+      "current_declared_permission_status": "ABSENT_FROM_DECLARED_READ_ONLY_BOUNDARY",
+      "permission_grant_status": "NOT_GRANTED_BY_FEATURE_8C",
+      "live_validation_status": "NOT_PERFORMED",
+      "live_execution_readiness": "BLOCKED"
+    },
+    {
+      "action_type": "SUBJECT_CREDENTIAL_RESET",
+      "symbolic_capability": "IDENTITY_CREDENTIAL_CONTROL_WRITE",
+      "provider": "MICROSOFT_GRAPH",
+      "operation_family": "USER_PASSWORD_PROFILE_UPDATE",
+      "least_privileged_delegated_permissions": [
+        "User-PasswordProfile.ReadWrite.All"
+      ],
+      "additional_prerequisites": [
+        "USER_ADMINISTRATOR_FOR_SUPPORTED_NONADMIN_TARGETS",
+        "PRIVILEGED_AUTHENTICATION_ADMINISTRATOR_FOR_ADMIN_TARGET_REVIEW"
+      ],
+      "documentation_status": "CONFIRMED",
+      "current_declared_permission_status": "ABSENT_FROM_DECLARED_READ_ONLY_BOUNDARY",
+      "permission_grant_status": "NOT_GRANTED_BY_FEATURE_8C",
+      "live_validation_status": "NOT_PERFORMED",
+      "live_execution_readiness": "BLOCKED"
+    },
+    {
+      "action_type": "FILE_QUARANTINE",
+      "symbolic_capability": "ENDPOINT_FILE_RESPONSE_CONTROL",
+      "provider": "DEFENDER_FOR_ENDPOINT_API",
+      "operation_family": "STOP_AND_QUARANTINE_FILE",
+      "least_privileged_delegated_permissions": [
+        "Machine.StopAndQuarantine"
+      ],
+      "additional_prerequisites": [
+        "ACTIVE_REMEDIATION_ACTIONS_ROLE_PERMISSION_REQUIRED",
+        "DEVICE_GROUP_ACCESS_REQUIRED",
+        "SEPARATE_DEFENDER_API_PERMISSION_SURFACE_REQUIRED"
+      ],
+      "documentation_status": "CONFIRMED",
+      "current_declared_permission_status": "ABSENT_FROM_DECLARED_READ_ONLY_BOUNDARY",
+      "permission_grant_status": "NOT_GRANTED_BY_FEATURE_8C",
+      "live_validation_status": "NOT_PERFORMED",
+      "live_execution_readiness": "BLOCKED"
+    }
+  ],
+  "readiness_decision": {
+    "capability_catalog_complete_for_feature_8_actions": true,
+    "current_read_only_principal_sufficient_for_live_response": false,
+    "current_project_ready_for_live_execution": false,
+    "separate_response_principal_required": true,
+    "explicit_permission_grant_gate_required": true,
+    "explicit_role_assignment_gate_required_if_needed": true,
+    "live_capability_validation_required": true,
+    "execution_release": "NOT_RELEASED",
+    "next_gate": "SEPARATE_RESPONSE_PRINCIPAL_AND_PERMISSION_DESIGN"
+  },
+  "safety_boundary": {
+    "graph_authentication": "NOT_PERFORMED",
+    "graph_requests": 0,
+    "defender_api_authentication": "NOT_PERFORMED",
+    "defender_api_requests": 0,
+    "tenant_reads": 0,
+    "tenant_writes": 0,
+    "endpoint_actions": 0,
+    "response_actions": 0,
+    "new_permission_grants": 0,
+    "role_assignments": 0,
+    "trial_activations": 0,
+    "current_read_only_app_mutated": false,
+    "live_execution_release": false
+  }
+}
