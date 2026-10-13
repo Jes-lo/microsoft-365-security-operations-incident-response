@@ -7,6 +7,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 ## Project status
 
 Feature 8 — Containment & Eradication — explicit response-principal provisioning authorization gate complete. Feature 8A provides simulation-only response plans, Feature 8B provides the local action review gate, Feature 8C maps documented response capabilities, Feature 8D defines three isolated future response principals, and Feature 8E adds a deterministic SHA-256-bound local authorization review gate before any provisioning implementation. A READY result does not authorize provisioning. No app registration, service principal, credential, permission grant, role assignment, admin consent, authentication session, tenant mutation, response action, or provisioning release is created by Feature 8E.
+Feature 9 — Recovery & Validation — foundation complete. Feature 9A introduces a deterministic local recovery-validation plan covering all eight modeled response actions. Recovery is not treated as blind rollback: OAuth access requires reapproval, compromised credentials are replaced rather than restored, and quarantined files require benign reclassification. All recovery items remain pending separate validation, incident closure is blocked by unresolved validation, and no live recovery action, tenant mutation, credential change, or incident closure is performed.
 
 The repository is initially private while implementation and validation are in progress.
 

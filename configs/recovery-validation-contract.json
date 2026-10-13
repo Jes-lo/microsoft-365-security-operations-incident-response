@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "feature": 9,
+  "phase": "RECOVERY_VALIDATION_FOUNDATION_COMPLETE",
+  "validation_state": "RECOVERY_VALIDATION_FOUNDATION_COMPLETE",
+  "mode": "LOCAL_VALIDATION_PLAN_ONLY",
+  "execution": {
+    "live_recovery_allowed": false,
+    "automatic_rollback_allowed": false,
+    "automatic_incident_closure_allowed": false,
+    "recovery_release": "NOT_RELEASED"
+  },
+  "input_contract": {
+    "gate_scope": "LOCAL_RECOVERY_VALIDATION_PLAN_ONLY",
+    "live_recovery_requested": false,
+    "max_action_items": 50,
+    "unexpected_properties_allowed": false,
+    "raw_tenant_identifiers_allowed": false,
+    "raw_object_identifiers_allowed": false,
+    "credentials_allowed": false,
+    "tokens_allowed": false
+  },
+  "closure_requirements": {
+    "all_recovery_items_require_validation": true,
+    "verification_evidence_required": true,
+    "explicit_human_validation_required": true,
+    "unresolved_item_blocks_closure": true,
+    "failed_validation_blocks_closure": true,
+    "automatic_closure": false,
+    "closure_status_before_validation": "NOT_READY_FOR_CLOSURE"
+  },
+  "recovery_profiles": [
+    {
+      "action_type": "SUBJECT_REVOKE_SESSIONS",
+      "target_class": "SUBJECT",
+      "target_alias_regex": "^SUBJECT-[0-9]{3}$",
+      "recovery_strategy": "CONTROLLED_REAUTHENTICATION",
+      "restore_previous_state_automatically": false,
+      "verification_checks": [
+        "APPROVED_REAUTHENTICATION_PATH_AVAILABLE",
+        "SESSION_CONTROL_STATE_REVIEWED",
+        "NO_UNEXPECTED_ACTIVE_SESSION_CONDITION"
+      ]
+    },
+    {
+      "action_type": "SUBJECT_BLOCK_SIGN_IN",
+      "target_class": "SUBJECT",
+      "target_alias_regex": "^SUBJECT-[0-9]{3}$",
+      "recovery_strategy": "AUTHORIZED_SIGN_IN_REENABLEMENT",
+      "restore_previous_state_automatically": false,
+      "verification_checks": [
+        "ACCOUNT_CONTROL_STATE_REVIEWED",
+        "APPROVED_SIGN_IN_PATH_AVAILABLE",
+        "IDENTITY_RISK_REVIEW_COMPLETE"
+      ]
+    },
+    {
+      "action_type": "APPLICATION_DISABLE_ACCESS",
+      "target_class": "APPLICATION",
+      "target_alias_regex": "^APP-[0-9]{3}$",
+      "recovery_strategy": "AUTHORIZED_APPLICATION_REENABLEMENT",
+      "restore_previous_state_automatically": false,
+      "verification_checks": [
+        "APPLICATION_CONTROL_STATE_REVIEWED",
+        "EXPECTED_SERVICE_HEALTH_CONFIRMED",
+        "APPLICATION_RISK_REVIEW_COMPLETE"
+      ]
+    },
+    {
+      "action_type": "DEVICE_ISOLATE",
+      "target_class": "DEVICE",
+      "target_alias_regex": "^DEVICE-[0-9]{3}$",
+      "recovery_strategy": "AUTHORIZED_DEVICE_RELEASE",
+      "restore_previous_state_automatically": false,
+      "verification_checks": [
+        "DEVICE_SECURITY_POSTURE_REVIEWED",
+        "RELEASE_PREREQUISITES_CONFIRMED",
+        "EXPECTED_CONNECTIVITY_VALIDATED"
+      ]
+    },
+    {
+      "action_type": "OAUTH_GRANT_REMOVE",
+      "target_class": "APPLICATION",
+      "target_alias_regex": "^APP-[0-9]{3}$",
+      "recovery_strategy": "REAPPROVAL_REQUIRED",
+      "restore_previous_state_automatically": false,
+      "verification_checks": [
+        "BUSINESS_REQUIREMENT_RECONFIRMED",
+        "REQUESTED_PERMISSION_SCOPE_REVIEWED",
+        "NEW_APPROVAL_REQUIRED"
+      ]
+    },
+    {
+      "action_type": "APPLICATION_CREDENTIAL_REMEDIATE",
+      "target_class": "APPLICATION",
+      "target_alias_regex": "^APP-[0-9]{3}$",
+      "recovery_strategy": "REPLACEMENT_CREDENTIAL_ONLY",
+      "restore_previous_state_automatically": false,
+      "verification_checks": [
+        "COMPROMISED_CREDENTIAL_NOT_RESTORED",
+        "REPLACEMENT_CREDENTIAL_PATH_REVIEWED",
+        "APPLICATION_AUTHENTICATION_HEALTH_VALIDATED"
+      ]
+    },
+    {
+      "action_type": "SUBJECT_CREDENTIAL_RESET",
+      "target_class": "SUBJECT",
+      "target_alias_regex": "^SUBJECT-[0-9]{3}$",
+      "recovery_strategy": "NEW_CREDENTIAL_REESTABLISHMENT",
+      "restore_previous_state_automatically": false,
+      "verification_checks": [
+        "PREVIOUS_CREDENTIAL_NOT_RESTORED",
+        "NEW_CREDENTIAL_PATH_REVIEWED",
+        "IDENTITY_ACCESS_VALIDATION_COMPLETE"
+      ]
+    },
+    {
+      "action_type": "FILE_QUARANTINE",
+      "target_class": "FILE",
+      "target_alias_regex": "^FILE-[0-9]{3}$",
+      "recovery_strategy": "BENIGN_RECLASSIFICATION_REQUIRED",
+      "restore_previous_state_automatically": false,
+      "verification_checks": [
+        "ARTIFACT_RECLASSIFIED_BENIGN",
+        "RESTORE_IMPACT_REVIEWED",
+        "EXPLICIT_RESTORE_APPROVAL_REQUIRED"
+      ]
+    }
+  ],
+  "safety_boundary": {
+    "graph_authentication": "NOT_PERFORMED",
+    "graph_requests": 0,
+    "defender_api_authentication": "NOT_PERFORMED",
+    "defender_api_requests": 0,
+    "tenant_reads": 0,
+    "tenant_writes": 0,
+    "endpoint_actions": 0,
+    "response_actions": 0,
+    "recovery_actions": 0,
+    "permission_grants": 0,
+    "role_assignments": 0,
+    "admin_consents": 0,
+    "credential_changes": 0,
+    "incident_closures": 0,
+    "live_recovery_release": false
+  },
+  "determinism": {
+    "timestamps_in_output": false,
+    "items_sorted_by_sequence": true,
+    "free_form_recovery_strategy_allowed": false
+  }
+}
