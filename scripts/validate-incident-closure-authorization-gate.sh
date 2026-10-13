@@ -136,16 +136,29 @@ jq -e '
   "$CONTRACT" \
   >/dev/null \
   || fail "Feature 9C safety boundary invalid"
-
-[[ "$(
+CURRENT_FEATURE="$(
   jq -r '.current_feature' "$PROJECT_SCOPE"
-)" == "9" ]] \
-  || fail "project current feature must remain 9"
+)"
 
-[[ "$(
+case "$CURRENT_FEATURE" in
+  9|10)
+    ;;
+  *)
+    fail "unexpected project current feature for Feature 9C history"
+    ;;
+esac
+CURRENT_STATE="$(
   jq -r '.current_state' "$PROJECT_SCOPE"
-)" == "incident-closure-authorization-gate-complete" ]] \
-  || fail "unexpected Feature 9C project state"
+)"
+
+case "$CURRENT_STATE" in
+  incident-closure-authorization-gate-complete|\
+postmortem-local-case-closure-foundation-complete)
+    ;;
+  *)
+    fail "unexpected Feature 9C/10A project state"
+    ;;
+esac
 
 grep -Fq \
   'Every authorization request is SHA-256 bound' \
