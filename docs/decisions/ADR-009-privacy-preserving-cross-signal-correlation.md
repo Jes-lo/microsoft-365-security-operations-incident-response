@@ -65,3 +65,17 @@ It requires no Graph authentication, tenant read, tenant write, endpoint respons
 The project can demonstrate deterministic SOC-style incident timelines across multiple Microsoft 365 security domains without claiming unsupported cross-domain identity relationships.
 
 The trade-off is deliberate: an analyst or another trusted sanitization stage must provide an explicit binding before events are treated as referring to the same subject.
+
+## Live validation outcome
+
+The Feature 7A design was subsequently validated through Feature 7B against fresh read-only tenant observations.
+
+The correlator itself remains independent from Microsoft Graph. Live collection was performed by a separate ephemeral validation harness and only sanitized Feature 4–6 outputs crossed into the correlation layer.
+
+The validation confirmed the original decision that temporal correlation and entity identity must remain separate. No cross-domain entity relationship was inferred from alias equality or time proximity.
+
+The validation also exposed and corrected an empty-array handling defect. Required investigation collections may legitimately contain zero records, so collection presence and collection cardinality are now validated independently.
+
+The corrected zero-signal path is protected by a dedicated regression test.
+
+All live validation material was temporary. Repository evidence contains only sanitized state classifications, integrity outcomes, and safety facts.

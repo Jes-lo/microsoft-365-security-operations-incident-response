@@ -47,6 +47,7 @@ required_files=(
   "docs/decisions/ADR-009-privacy-preserving-cross-signal-correlation.md"
   "scripts/validate-cross-signal-correlation.sh"
   "tests/test-cross-signal-correlation.sh"
+  "docs/evidence/CROSS-SIGNAL-CORRELATION-LIVE-VALIDATION.md"
   "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "automation/powershell/Convert-EnterpriseAppOAuthSignals.ps1"
   "docs/architecture/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION.md"

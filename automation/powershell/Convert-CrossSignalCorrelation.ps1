@@ -66,6 +66,43 @@ function Get-RequiredProperty {
     return $value
 }
 
+function Get-RequiredArrayProperty {
+    param(
+        [Parameter(Mandatory = $true)]
+        [object]$Object,
+
+        [Parameter(Mandatory = $true)]
+        [string]$Name,
+
+        [Parameter(Mandatory = $true)]
+        [string]$Context
+    )
+
+    if ($null -eq $Object) {
+        throw "$Context is unavailable."
+    }
+
+    $property = $Object.PSObject.Properties[$Name]
+
+    if ($null -eq $property) {
+        throw "$Context is missing required property '$Name'."
+    }
+
+    $value = $property.Value
+
+    if ($null -eq $value) {
+        throw "$Context property '$Name' cannot be null."
+    }
+
+    if ($value -isnot [System.Array]) {
+        throw "$Context property '$Name' must be an array."
+    }
+
+    foreach ($item in $value) {
+        Write-Output $item
+    }
+}
+
 function Read-JsonDocument {
     param(
         [Parameter(Mandatory = $true)]
@@ -519,49 +556,49 @@ foreach (
 }
 
 $identitySignIns = @(
-    Get-RequiredProperty `
+    Get-RequiredArrayProperty `
         -Object $identity `
         -Name 'sign_ins' `
         -Context 'Identity summary'
 )
 
 $identityAudits = @(
-    Get-RequiredProperty `
+    Get-RequiredArrayProperty `
         -Object $identity `
         -Name 'directory_audits' `
         -Context 'Identity summary'
 )
 
 $identityRisks = @(
-    Get-RequiredProperty `
+    Get-RequiredArrayProperty `
         -Object $identity `
         -Name 'risk_detections' `
         -Context 'Identity summary'
 )
 
 $applicationSignIns = @(
-    Get-RequiredProperty `
+    Get-RequiredArrayProperty `
         -Object $application `
         -Name 'sign_ins' `
         -Context 'Application summary'
 )
 
 $applicationAudits = @(
-    Get-RequiredProperty `
+    Get-RequiredArrayProperty `
         -Object $application `
         -Name 'directory_audits' `
         -Context 'Application summary'
 )
 
 $endpointIncidents = @(
-    Get-RequiredProperty `
+    Get-RequiredArrayProperty `
         -Object $endpoint `
         -Name 'incidents' `
         -Context 'Endpoint summary'
 )
 
 $endpointAlerts = @(
-    Get-RequiredProperty `
+    Get-RequiredArrayProperty `
         -Object $endpoint `
         -Name 'alerts' `
         -Context 'Endpoint summary'

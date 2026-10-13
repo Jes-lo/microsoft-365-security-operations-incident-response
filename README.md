@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 7 — Cross-Signal Correlation — foundation complete. The project now combines sanitized identity, enterprise-application/OAuth, and endpoint-security investigation summaries into a deterministic incident timeline. Source aliases remain domain scoped: equal alias text across domains never creates an entity join. Cross-domain subject relationships require explicit sanitized SAME_SUBJECT bindings, while unbound events remain available for temporal correlation. The Feature 7A foundation is local-only, uses no Microsoft Graph requests, performs no tenant or endpoint actions, and supports Feature 3 SHA-256/custody registration.
+Feature 7 — Cross-Signal Correlation — complete. Live validation reused the existing delegated read-only Microsoft Graph permissions in a bounded 24-hour observation across identity, audit, risk, Defender-alert, and Defender-incident surfaces. Fresh live inputs were sanitized through Features 4–6 before correlation. Identity and enterprise-application/OAuth summaries contained sanitized events while the endpoint-security summary truthfully remained zero-signal. The correlator produced deterministic timelines without treating equal domain-local aliases as cross-domain identity. No explicit live entity binding was attempted. Raw Graph payloads and identifiers were not retained, Feature 3 SHA-256/custody validation passed, and no tenant writes, endpoint actions, new permissions, role assignments, or trial activations occurred. Feature 7 is complete and the project is ready for Feature 8 — Containment & Eradication.
 
 The repository is initially private while implementation and validation are in progress.
 

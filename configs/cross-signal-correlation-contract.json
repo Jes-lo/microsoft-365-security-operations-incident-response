@@ -2,8 +2,8 @@
   "schema_version": 1,
   "feature": 7,
   "name": "Cross-Signal Correlation",
-  "phase": "FOUNDATION_COMPLETE",
-  "validation_state": "CROSS_SIGNAL_CORRELATION_FOUNDATION_COMPLETE",
+  "phase": "LIVE_VALIDATION_COMPLETE",
+  "validation_state": "CROSS_SIGNAL_CORRELATION_COMPLETE",
   "inputs": [
     {
       "id": "identity-security-summary",
@@ -73,12 +73,58 @@
     "response_actions": 0,
     "new_permission_grants": 0,
     "role_assignments": 0,
-    "trial_activations": 0
+    "trial_activations": 0,
+    "applies_to": "CORRELATOR_RUNTIME"
   },
   "evidence_boundary": {
     "feature_3_registration_supported": true,
     "raw_evidence_copy_required": false,
     "sha256_supported": true,
     "custody_hash_chain_supported": true
+  },
+  "live_validation": {
+    "status": "PASS",
+    "result": "AVAILABLE_SURFACES_TEMPORAL_CORRELATION_VALIDATED",
+    "authentication": "DELEGATED_READ_ONLY",
+    "device_code_used": false,
+    "persistent_execution_policy_change": false,
+    "lookback_hours": 24,
+    "maximum_records_per_surface": 25,
+    "graph_get_request_count": 5,
+    "successful_get_count": 5,
+    "pagination_used": false,
+    "new_permission_grant_count": 0,
+    "tenant_write_count": 0,
+    "endpoint_action_count": 0,
+    "response_action_count": 0,
+    "role_assignment_count": 0,
+    "trial_activation_count": 0,
+    "raw_graph_payloads_printed": false,
+    "raw_graph_payloads_retained": false,
+    "raw_identifiers_retained": false,
+    "live_activity_counts_committed_to_git": false,
+    "temporary_live_inputs_committed_to_git": false,
+    "sanitized_live_transformation_validated": true,
+    "deterministic_correlation_validated": true,
+    "explicit_live_entity_binding_attempted": false,
+    "cross_domain_alias_equality_join_used": false,
+    "zero_signal_empty_array_regression_validated": true,
+    "feature_3_evidence_registration_validated": true,
+    "feature_3_custody_integrity_validated": true,
+    "sanitized_evidence_path": "docs/evidence/CROSS-SIGNAL-CORRELATION-LIVE-VALIDATION.md",
+    "sanitized_evidence_sha256": "28c4714986efe1471d26d74ba5fe173cad785b87f0e392c7def138bab2a0d926",
+    "source_states": {
+      "sign_ins": "NONZERO",
+      "directory_audits": "NONZERO",
+      "risk_detections": "ZERO",
+      "defender_alerts": "ZERO",
+      "defender_incidents": "ZERO"
+    },
+    "sanitized_domain_states": {
+      "identity": "NONZERO",
+      "application": "NONZERO",
+      "endpoint": "ZERO",
+      "timeline": "NONZERO"
+    }
   }
 }
