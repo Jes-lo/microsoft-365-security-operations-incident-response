@@ -186,13 +186,22 @@ done
 )" == "false" ]] \
   || fail "Feature 7A must not require Graph authentication"
 
-[[ "$(jq -r '.current_feature' "$PROJECT_SCOPE")" == "7" ]] \
-  || fail "project current feature must be 7"
+CURRENT_FEATURE="$(
+  jq -r '.current_feature' "$PROJECT_SCOPE"
+)"
 
-[[ "$(
-  jq -r '.current_state' "$PROJECT_SCOPE"
-)" == "cross-signal-correlation-complete" ]] \
-  || fail "unexpected project Feature 7 state"
+[[ "$CURRENT_FEATURE" =~ ^[0-9]+$ ]] \
+  || fail "project current feature must be numeric"
+
+(( CURRENT_FEATURE >= 7 )) \
+  || fail "project current feature must not regress below 7"
+
+if (( CURRENT_FEATURE == 7 )); then
+  [[ "$(
+    jq -r '.current_state' "$PROJECT_SCOPE"
+  )" == "cross-signal-correlation-complete" ]] \
+    || fail "unexpected project Feature 7 state"
+fi
 
 [[ "$(
   jq -r \

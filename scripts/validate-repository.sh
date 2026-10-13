@@ -48,6 +48,12 @@ required_files=(
   "scripts/validate-cross-signal-correlation.sh"
   "tests/test-cross-signal-correlation.sh"
   "docs/evidence/CROSS-SIGNAL-CORRELATION-LIVE-VALIDATION.md"
+  "configs/containment-eradication-contract.json"
+  "automation/powershell/New-ContainmentEradicationPlan.ps1"
+  "docs/architecture/CONTAINMENT-ERADICATION.md"
+  "docs/decisions/ADR-010-safety-gated-containment-eradication.md"
+  "scripts/validate-containment-eradication.sh"
+  "tests/test-containment-eradication.sh"
   "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "automation/powershell/Convert-EnterpriseAppOAuthSignals.ps1"
   "docs/architecture/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION.md"
@@ -254,5 +260,8 @@ pass "file-size guardrail valid"
 
 ./scripts/validate-cross-signal-correlation.sh
 ./tests/test-cross-signal-correlation.sh
+
+./scripts/validate-containment-eradication.sh
+./tests/test-containment-eradication.sh
 
 printf 'REPOSITORY_VALIDATION=PASS\n'

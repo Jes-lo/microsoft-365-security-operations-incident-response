@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "feature": 8,
+  "phase": "SIMULATION_FOUNDATION_COMPLETE",
+  "validation_state": "CONTAINMENT_ERADICATION_SIMULATION_FOUNDATION_COMPLETE",
+  "mode": "LOCAL_SIMULATION_ONLY",
+  "purpose": "Build deterministic, privacy-preserving containment and eradication action plans without executing Microsoft 365 or endpoint response actions.",
+  "input_contract": {
+    "schema_version": 1,
+    "feature": 8,
+    "execution_mode": "SIMULATION_ONLY",
+    "live_execution_authorized": false,
+    "case_binding_required": true,
+    "maximum_actions": 50,
+    "free_form_target_identifiers_allowed": false,
+    "free_form_reason_text_allowed": false,
+    "unexpected_properties_allowed": false
+  },
+  "allowed_reason_categories": [
+    "SUSPECTED_ACCOUNT_COMPROMISE",
+    "MALICIOUS_APPLICATION_ACTIVITY",
+    "OAUTH_ABUSE",
+    "ENDPOINT_COMPROMISE",
+    "MALICIOUS_FILE_ACTIVITY",
+    "CREDENTIAL_EXPOSURE",
+    "POLICY_VIOLATION",
+    "OTHER_SANITIZED"
+  ],
+  "action_catalog": [
+    {
+      "action_type": "SUBJECT_REVOKE_SESSIONS",
+      "phase": "CONTAINMENT",
+      "target_class": "SUBJECT",
+      "impact": "HIGH",
+      "reversibility": "LIMITED",
+      "required_live_capability": "IDENTITY_SESSION_CONTROL_WRITE",
+      "permission_resolution": "DEFERRED_TO_EXPLICIT_ACTION_GATE"
+    },
+    {
+      "action_type": "SUBJECT_BLOCK_SIGN_IN",
+      "phase": "CONTAINMENT",
+      "target_class": "SUBJECT",
+      "impact": "HIGH",
+      "reversibility": "REVERSIBLE",
+      "required_live_capability": "IDENTITY_ACCOUNT_CONTROL_WRITE",
+      "permission_resolution": "DEFERRED_TO_EXPLICIT_ACTION_GATE"
+    },
+    {
+      "action_type": "APPLICATION_DISABLE_ACCESS",
+      "phase": "CONTAINMENT",
+      "target_class": "APPLICATION",
+      "impact": "HIGH",
+      "reversibility": "REVERSIBLE",
+      "required_live_capability": "APPLICATION_CONTROL_WRITE",
+      "permission_resolution": "DEFERRED_TO_EXPLICIT_ACTION_GATE"
+    },
+    {
+      "action_type": "DEVICE_ISOLATE",
+      "phase": "CONTAINMENT",
+      "target_class": "DEVICE",
+      "impact": "HIGH",
+      "reversibility": "REVERSIBLE",
+      "required_live_capability": "ENDPOINT_RESPONSE_CONTROL",
+      "permission_resolution": "DEFERRED_TO_EXPLICIT_ACTION_GATE"
+    },
+    {
+      "action_type": "OAUTH_GRANT_REMOVE",
+      "phase": "ERADICATION",
+      "target_class": "APPLICATION",
+      "impact": "HIGH",
+      "reversibility": "LIMITED",
+      "required_live_capability": "OAUTH_PERMISSION_CONTROL_WRITE",
+      "permission_resolution": "DEFERRED_TO_EXPLICIT_ACTION_GATE"
+    },
+    {
+      "action_type": "APPLICATION_CREDENTIAL_REMEDIATE",
+      "phase": "ERADICATION",
+      "target_class": "APPLICATION",
+      "impact": "CRITICAL",
+      "reversibility": "LIMITED",
+      "required_live_capability": "APPLICATION_CREDENTIAL_CONTROL_WRITE",
+      "permission_resolution": "DEFERRED_TO_EXPLICIT_ACTION_GATE"
+    },
+    {
+      "action_type": "SUBJECT_CREDENTIAL_RESET",
+      "phase": "ERADICATION",
+      "target_class": "SUBJECT",
+      "impact": "HIGH",
+      "reversibility": "LIMITED",
+      "required_live_capability": "IDENTITY_CREDENTIAL_CONTROL_WRITE",
+      "permission_resolution": "DEFERRED_TO_EXPLICIT_ACTION_GATE"
+    },
+    {
+      "action_type": "FILE_QUARANTINE",
+      "phase": "ERADICATION",
+      "target_class": "FILE",
+      "impact": "HIGH",
+      "reversibility": "REVERSIBLE",
+      "required_live_capability": "ENDPOINT_FILE_RESPONSE_CONTROL",
+      "permission_resolution": "DEFERRED_TO_EXPLICIT_ACTION_GATE"
+    }
+  ],
+  "target_alias_formats": {
+    "SUBJECT": "^SUBJECT-[0-9]{3}$",
+    "APPLICATION": "^APP-[0-9]{3}$",
+    "DEVICE": "^DEVICE-[0-9]{3}$",
+    "FILE": "^FILE-[0-9]{3}$"
+  },
+  "action_gate_requirements": [
+    "EXACT_ACTION",
+    "TARGET_CLASS",
+    "IMPACT",
+    "REVERSIBILITY",
+    "PREREQUISITES",
+    "CURRENT_PERMISSION_RESOLUTION",
+    "VERIFICATION_PLAN",
+    "ROLLBACK_PLAN",
+    "EVIDENCE_HANDLING",
+    "EXPLICIT_OPERATOR_AUTHORIZATION"
+  ],
+  "safety_boundary": {
+    "graph_authentication_required": false,
+    "graph_requests": 0,
+    "tenant_reads": 0,
+    "tenant_writes": 0,
+    "endpoint_actions": 0,
+    "response_actions": 0,
+    "new_permission_grants": 0,
+    "role_assignments": 0,
+    "trial_activations": 0,
+    "live_execution_authorized": false,
+    "destructive_action_default": "DENY",
+    "live_response_action_default": "DENY",
+    "explicit_action_gate_required": true
+  },
+  "privacy_boundary": {
+    "raw_tenant_identifiers_allowed": false,
+    "raw_user_identifiers_allowed": false,
+    "raw_application_identifiers_allowed": false,
+    "raw_device_identifiers_allowed": false,
+    "raw_file_identifiers_allowed": false,
+    "raw_network_indicators_allowed": false,
+    "raw_credentials_allowed": false,
+    "raw_tokens_allowed": false,
+    "free_form_target_values_allowed": false,
+    "controlled_aliases_only": true,
+    "controlled_reason_categories_only": true
+  },
+  "output_contract": {
+    "deterministic": true,
+    "generation_timestamp_included": false,
+    "execution_status": "NOT_EXECUTED",
+    "action_gate_status": "NOT_PASSED",
+    "permission_resolution": "DEFERRED_TO_EXPLICIT_ACTION_GATE",
+    "repository_safe": true
+  },
+  "evidence_boundary": {
+    "feature_3_registration_supported": true,
+    "raw_evidence_copy_required": false,
+    "sha256_supported": true,
+    "custody_hash_chain_supported": true,
+    "simulated_plan_may_be_registered": true
+  }
+}
