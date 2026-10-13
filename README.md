@@ -127,7 +127,7 @@ Controlled restoration, access verification, residual-risk checks, and recovery 
 
 ### Feature 10 — Postmortem & Project Closure
 
-Incident metrics, postmortems, adversarial validation, final architecture documentation, release verification, and public portfolio publication.
+Incident metrics, postmortems, adversarial validation, final architecture documentation, release verification, publication-readiness review, and a separate manual publication decision.
 
 ## Independence
 
