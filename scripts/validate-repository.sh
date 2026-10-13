@@ -70,6 +70,12 @@ required_files=(
   "docs/decisions/ADR-013-provider-and-domain-separated-response-principals.md"
   "scripts/validate-containment-eradication-response-principal-design.sh"
   "tests/test-containment-eradication-response-principal-design.sh"
+  "automation/powershell/Test-ResponsePrincipalProvisioningAuthorizationGate.ps1"
+  "configs/containment-eradication-response-principal-provisioning-gate-contract.json"
+  "docs/architecture/RESPONSE-PRINCIPAL-PROVISIONING-AUTHORIZATION-GATE.md"
+  "docs/decisions/ADR-014-explicit-response-principal-provisioning-authorization-gate.md"
+  "scripts/validate-containment-eradication-response-principal-provisioning-gate.sh"
+  "tests/test-containment-eradication-response-principal-provisioning-gate.sh"
   "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "automation/powershell/Convert-EnterpriseAppOAuthSignals.ps1"
   "docs/architecture/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION.md"
@@ -288,5 +294,8 @@ pass "file-size guardrail valid"
 
 ./scripts/validate-containment-eradication-response-principal-design.sh
 ./tests/test-containment-eradication-response-principal-design.sh
+
+./scripts/validate-containment-eradication-response-principal-provisioning-gate.sh
+./tests/test-containment-eradication-response-principal-provisioning-gate.sh
 
 printf 'REPOSITORY_VALIDATION=PASS\n'

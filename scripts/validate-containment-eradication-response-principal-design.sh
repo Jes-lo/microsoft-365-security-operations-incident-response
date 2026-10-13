@@ -345,10 +345,18 @@ CURRENT_FEATURE="$(
   || fail "project current feature must not regress below 8"
 
 if (( CURRENT_FEATURE == 8 )); then
-  [[ "$(
+  CURRENT_STATE="$(
     jq -r '.current_state' "$PROJECT_SCOPE"
-  )" == "containment-eradication-response-principal-design-complete" ]] \
-    || fail "unexpected Feature 8D project state"
+  )"
+
+  case "$CURRENT_STATE" in
+    containment-eradication-response-principal-design-complete|\
+containment-eradication-response-principal-provisioning-authorization-gate-complete)
+      ;;
+    *)
+      fail "unexpected Feature 8D/8E project state"
+      ;;
+  esac
 fi
 
 grep -Fq \
