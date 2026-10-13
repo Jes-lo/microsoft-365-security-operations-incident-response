@@ -54,6 +54,12 @@ required_files=(
   "docs/decisions/ADR-010-safety-gated-containment-eradication.md"
   "scripts/validate-containment-eradication.sh"
   "tests/test-containment-eradication.sh"
+  "configs/containment-eradication-action-gate-contract.json"
+  "automation/powershell/Test-ContainmentEradicationActionGate.ps1"
+  "docs/architecture/CONTAINMENT-ERADICATION-ACTION-GATE.md"
+  "docs/decisions/ADR-011-explicit-response-action-gate.md"
+  "scripts/validate-containment-eradication-action-gate.sh"
+  "tests/test-containment-eradication-action-gate.sh"
   "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "automation/powershell/Convert-EnterpriseAppOAuthSignals.ps1"
   "docs/architecture/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION.md"
@@ -263,5 +269,8 @@ pass "file-size guardrail valid"
 
 ./scripts/validate-containment-eradication.sh
 ./tests/test-containment-eradication.sh
+
+./scripts/validate-containment-eradication-action-gate.sh
+./tests/test-containment-eradication-action-gate.sh
 
 printf 'REPOSITORY_VALIDATION=PASS\n'
