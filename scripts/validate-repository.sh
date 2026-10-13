@@ -38,6 +38,7 @@ required_files=(
   "automation/powershell/Convert-EndpointSecuritySignals.ps1"
   "docs/architecture/ENDPOINT-SECURITY-INCIDENT-INVESTIGATION.md"
   "docs/decisions/ADR-008-privacy-preserving-endpoint-security-investigation.md"
+  "docs/evidence/ENDPOINT-SECURITY-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "scripts/validate-endpoint-security-investigation.sh"
   "tests/test-endpoint-security-investigation.sh"
   "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"

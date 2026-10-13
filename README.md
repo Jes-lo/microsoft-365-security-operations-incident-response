@@ -6,7 +6,7 @@ The project focuses on detecting, investigating, correlating, containing, eradic
 
 ## Project status
 
-Feature 6 — Endpoint Security Incident Investigation — foundation ready for live validation. Microsoft Graph unified security alerts and incidents can now be correlated locally through privacy-preserving INCIDENT, ALERT, DEVICE, and SUBJECT aliases. Endpoint-oriented evidence is reduced to controlled security categories and can be registered through the Feature 3 SHA-256/custody workflow without retaining raw device identifiers, hostnames, users, network indicators, file artifacts, free-form alert content, or Graph payloads. The foundation uses existing read-only SecurityAlert.Read.All and SecurityIncident.Read.All permissions and performs no endpoint response actions.
+Feature 6 — Endpoint Security Incident Investigation — complete. Bounded live validation confirmed both previously authorized Microsoft Graph unified security surfaces using only the existing read-only SecurityAlert.Read.All and SecurityIncident.Read.All permissions. The 24-hour validation window returned zero alerts and zero incidents; this is recorded as an available zero-signal observation rather than fabricated telemetry. The zero-signal converter path and Feature 3 SHA-256/custody workflow were validated without retaining raw Graph payloads, tenant or endpoint identifiers, network or file artifacts, titles, or descriptions. No tenant writes, endpoint writes, response actions, new permissions, role assignments, or trial activations occurred. The project is ready for Feature 7 — Cross-Signal Correlation.
 
 The repository is initially private while implementation and validation are in progress.
 
