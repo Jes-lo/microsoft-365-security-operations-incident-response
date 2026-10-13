@@ -710,6 +710,117 @@ set -e
 [[ "$PHANTOM_EXIT" -ne 0 ]] \
   || fail "phantom binding alias was accepted"
 
+ZERO_IDENTITY="$WORK/zero-identity.json"
+ZERO_APPLICATION="$WORK/zero-application.json"
+ZERO_ENDPOINT="$WORK/zero-endpoint.json"
+ZERO_SUMMARY_ONE="$WORK/zero-summary-one.json"
+ZERO_SUMMARY_TWO="$WORK/zero-summary-two.json"
+
+jq '
+  .sign_ins = []
+  |
+  .directory_audits = []
+  |
+  .risk_detections = []
+  |
+  .source_counts |= with_entries(.value = 0)
+  |
+  .finding_counts |= with_entries(.value = 0)
+' \
+  "$IDENTITY" \
+  > "$ZERO_IDENTITY"
+
+jq '
+  .sign_ins = []
+  |
+  .directory_audits = []
+  |
+  .counts |= with_entries(.value = 0)
+' \
+  "$APPLICATION" \
+  > "$ZERO_APPLICATION"
+
+jq '
+  .incidents = []
+  |
+  .alerts = []
+  |
+  .counts |= with_entries(.value = 0)
+' \
+  "$ENDPOINT" \
+  > "$ZERO_ENDPOINT"
+
+pwsh \
+  -NoLogo \
+  -NoProfile \
+  -NonInteractive \
+  -File "$CONVERTER" \
+  -CasePath "$CASE_PATH" \
+  -IdentitySummaryPath "$ZERO_IDENTITY" \
+  -ApplicationSummaryPath "$ZERO_APPLICATION" \
+  -EndpointSummaryPath "$ZERO_ENDPOINT" \
+  -OutputPath "$ZERO_SUMMARY_ONE" \
+  >/dev/null
+
+pwsh \
+  -NoLogo \
+  -NoProfile \
+  -NonInteractive \
+  -File "$CONVERTER" \
+  -CasePath "$CASE_PATH" \
+  -IdentitySummaryPath "$ZERO_IDENTITY" \
+  -ApplicationSummaryPath "$ZERO_APPLICATION" \
+  -EndpointSummaryPath "$ZERO_ENDPOINT" \
+  -OutputPath "$ZERO_SUMMARY_TWO" \
+  >/dev/null
+
+jq -e . "$ZERO_SUMMARY_ONE" >/dev/null
+jq -e . "$ZERO_SUMMARY_TWO" >/dev/null
+
+cmp -s \
+  "$ZERO_SUMMARY_ONE" \
+  "$ZERO_SUMMARY_TWO" \
+  || fail "zero-signal correlation output is not deterministic"
+
+jq -e '
+  .feature == 7
+  and
+  .correlation_type == "CROSS_SIGNAL"
+  and
+  .deterministic_output == true
+  and
+  .counts.total_events == 0
+  and
+  .counts.identity_events == 0
+  and
+  .counts.application_events == 0
+  and
+  .counts.endpoint_events == 0
+  and
+  .counts.explicit_subject_bindings == 0
+  and
+  .counts.bound_events == 0
+  and
+  .counts.unbound_events == 0
+  and
+  (.timeline | length) == 0
+  and
+  (.bindings | length) == 0
+  and
+  .privacy.raw_identifiers_retained == false
+  and
+  .privacy.raw_graph_payloads_retained == false
+  and
+  .safety_boundary.tenant_writes == 0
+  and
+  .safety_boundary.endpoint_actions == 0
+' \
+  "$ZERO_SUMMARY_ONE" \
+  >/dev/null \
+  || fail "zero-signal empty-array correlation contract failed"
+
+printf 'ZERO_SIGNAL_EMPTY_ARRAY_CORRELATION=PASS\n'
+
 UNSAFE_IDENTITY="$WORK/unsafe-identity.json"
 
 jq \
@@ -747,5 +858,6 @@ printf 'PHANTOM_BINDING_REJECTION=PASS\n'
 printf 'DUPLICATE_BINDING_MEMBER_REJECTION=PASS\n'
 printf 'UNSAFE_SOURCE_REJECTION=PASS\n'
 printf 'RAW_IDENTIFIER_NON_RETENTION=PASS\n'
+printf 'ZERO_SIGNAL_EMPTY_ARRAY_REGRESSION=PASS\n'
 printf 'SENSITIVE_CATEGORY_REDACTION_TEST=PASS\n'
 printf 'FEATURE_3_EVIDENCE_INTEGRATION=PASS\n'

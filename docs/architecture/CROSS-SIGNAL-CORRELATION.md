@@ -148,3 +148,25 @@ The converter fails closed when:
 - an event timestamp cannot be normalized safely.
 
 This prevents accidental cross-domain identity claims and preserves the distinction between observed sanitized evidence and explicit correlation decisions.
+
+## Feature 7B live validation boundary
+
+The correlation converter remains local-only and has no Microsoft Graph runtime dependency.
+
+Feature 7B validated that local converter against fresh tenant observations by using a separate ephemeral validation harness.
+
+The harness reused only previously authorized delegated read-only permissions and performed five bounded GET requests over a 24-hour lookback with at most 25 records per surface and no pagination following.
+
+Raw live responses existed only in temporary private storage and were passed through the Feature 4, Feature 5, and Feature 6 sanitization layers before reaching the Feature 7 converter.
+
+The live validation observed nonzero sanitized identity and enterprise-application/OAuth data and a truthful zero-signal endpoint result.
+
+Valid empty arrays are first-class input states. A required collection may be empty without being treated as missing or null.
+
+The live correlation output remained deterministic across repeated conversion.
+
+No explicit cross-domain entity binding was attempted during live validation. Temporal ordering therefore did not imply entity identity.
+
+The validation harness performed no tenant write, endpoint action, response action, permission grant, role assignment, or trial activation.
+
+No raw live identifier, raw Graph payload, or exact live activity count is retained in the repository.
