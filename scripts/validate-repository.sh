@@ -100,6 +100,11 @@ required_files=(
   "docs/decisions/ADR-018-postmortem-and-local-case-closure.md"
   "scripts/validate-postmortem-local-closure.sh"
   "tests/test-postmortem-local-closure.sh"
+  "configs/final-project-closure-publication-readiness-contract.json"
+  "docs/architecture/FINAL-PROJECT-CLOSURE-AND-PUBLICATION-READINESS.md"
+  "docs/decisions/ADR-019-final-project-closure-and-publication-readiness.md"
+  "scripts/validate-final-project-closure-publication-readiness.sh"
+  "tests/test-final-project-closure-publication-readiness.sh"
   "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "automation/powershell/Convert-EnterpriseAppOAuthSignals.ps1"
   "docs/architecture/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION.md"
@@ -333,5 +338,8 @@ pass "file-size guardrail valid"
 
 ./scripts/validate-postmortem-local-closure.sh
 ./tests/test-postmortem-local-closure.sh
+
+./scripts/validate-final-project-closure-publication-readiness.sh
+./tests/test-final-project-closure-publication-readiness.sh
 
 printf 'REPOSITORY_VALIDATION=PASS\n'

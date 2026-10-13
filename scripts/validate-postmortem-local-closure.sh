@@ -172,11 +172,18 @@ jq -e '
   jq -r '.current_feature' "$PROJECT_SCOPE"
 )" == "10" ]] \
   || fail "project current feature must be 10"
-
-[[ "$(
+CURRENT_STATE="$(
   jq -r '.current_state' "$PROJECT_SCOPE"
-)" == "postmortem-local-case-closure-foundation-complete" ]] \
-  || fail "unexpected Feature 10A project state"
+)"
+
+case "$CURRENT_STATE" in
+  postmortem-local-case-closure-foundation-complete|\
+final-project-closure-publication-readiness-audit-complete)
+    ;;
+  *)
+    fail "unexpected Feature 10A/10B project state"
+    ;;
+esac
 
 grep -Fq \
   'It does not close an incident in Microsoft 365.' \
