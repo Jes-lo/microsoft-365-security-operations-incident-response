@@ -88,6 +88,12 @@ required_files=(
   "docs/decisions/ADR-016-recovery-closure-review-before-incident-closure.md"
   "scripts/validate-recovery-closure-gate.sh"
   "tests/test-recovery-closure-gate.sh"
+  "automation/powershell/Test-IncidentClosureAuthorizationGate.ps1"
+  "configs/incident-closure-authorization-gate-contract.json"
+  "docs/architecture/INCIDENT-CLOSURE-AUTHORIZATION-GATE.md"
+  "docs/decisions/ADR-017-explicit-incident-closure-authorization-gate.md"
+  "scripts/validate-incident-closure-authorization-gate.sh"
+  "tests/test-incident-closure-authorization-gate.sh"
   "docs/evidence/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION-LIVE-VALIDATION.md"
   "automation/powershell/Convert-EnterpriseAppOAuthSignals.ps1"
   "docs/architecture/ENTERPRISE-APPLICATION-OAUTH-INCIDENT-INVESTIGATION.md"
@@ -315,5 +321,8 @@ pass "file-size guardrail valid"
 
 ./scripts/validate-recovery-closure-gate.sh
 ./tests/test-recovery-closure-gate.sh
+
+./scripts/validate-incident-closure-authorization-gate.sh
+./tests/test-incident-closure-authorization-gate.sh
 
 printf 'REPOSITORY_VALIDATION=PASS\n'

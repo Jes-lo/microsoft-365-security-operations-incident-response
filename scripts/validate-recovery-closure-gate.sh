@@ -179,10 +179,18 @@ jq -e '
 )" == "9" ]] \
   || fail "project current feature must remain 9"
 
-[[ "$(
+CURRENT_STATE="$(
   jq -r '.current_state' "$PROJECT_SCOPE"
-)" == "recovery-validation-scenarios-closure-gate-complete" ]] \
-  || fail "unexpected Feature 9B project state"
+)"
+
+case "$CURRENT_STATE" in
+  recovery-validation-scenarios-closure-gate-complete|\
+incident-closure-authorization-gate-complete)
+    ;;
+  *)
+    fail "unexpected Feature 9B/9C project state"
+    ;;
+esac
 
 grep -Fq \
   'Every closure-gate request must contain the SHA-256 digest' \
